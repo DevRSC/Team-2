@@ -1,5 +1,5 @@
 ###################
-CHANGELOG - Gil Alvarez Developer Branch
+CHANGELOG - Cobilla Ramil Developer Branch
 ###################
 
 **Visit the live site! https://mealsformakers.xyz/**
@@ -42,3 +42,7 @@ v1 code change, codename: "Shopee 11.11" (week 1, task 4)
 	* Function for messages CRUD
 	* Functions for recipe suggestion (subject to optimizatio)
 * Database Model Changes
+
+*******************
+ONGOING
+*******************
