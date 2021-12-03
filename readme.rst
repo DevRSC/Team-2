@@ -5,7 +5,7 @@ CHANGELOG - Cobilla Ramil Developer Branch
 **Visit the live site! https://mealsformakers.xyz/**
 
 *******************
-v1.0.1a code change, codename: "Gil Puyat" (week 3)
+v1.0.1a code change (week 3)
 *******************
 
 * Connection of backend CRUD functions to frontend
