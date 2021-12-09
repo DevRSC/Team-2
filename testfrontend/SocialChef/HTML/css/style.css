@@ -680,6 +680,7 @@ div.uploader.disabled.active span.action 		{}
 
 .spinner {width:90px;height:90px;background-color:#FF7A73;margin: 20% auto;-webkit-animation: spinner 1.2s infinite ease-in-out;-moz-animation: spinner 1.2s infinite ease-in-out;animation: spinner 1.2s infinite ease-in-out;}
 
+<<<<<<< HEAD
 /*PRIVACY POLICY*/
 .policy{
   float:left;width:100%;display:block;min-height:500px;padding:150px 38px 50px;}
@@ -691,6 +692,8 @@ div.uploader.disabled.active span.action 		{}
 
   .policy-text h1{font-size: 40px;}
 
+=======
+>>>>>>> origin/master
 @-webkit-keyframes spinner {
   0%	{-webkit-transform: perspective(120px) }
   50% 	{-webkit-transform: perspective(120px) rotateY(180deg) }
