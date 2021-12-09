@@ -1,5 +1,5 @@
 ###################
-CHANGELOG - Gil Alvarez Developer Branch
+CHANGELOG - Master Branch
 ###################
 
 **Visit the live site! https://mealsformakers.xyz/**
