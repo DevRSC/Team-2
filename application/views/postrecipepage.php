@@ -85,11 +85,17 @@
 				</ul>
 			</nav>
 			<!--//breadcrumbs-->
-			
+			<?php $isEditMode = false; ?>
 			<!--row-->
 			<div class="row">
 				<header class="s-title">
-					<h1>Post a recipe</h1>
+					<?php if (isset($currentRecipe)): ?>
+						<h1>Edit your recipe : <?php echo $currentRecipe[0]['recipeTitle'] ?></h1>
+						<?php $isEditMode = true; ?>
+					<?php else: ?>
+						<h1>Post a recipe</h1>
+						<?php $isEditMode = false; //trust issues? hahaha ?>
+					<?php endif ?>
 				</header>
 				
 				<?php
@@ -106,23 +112,28 @@
 				<section class="content full-width">
 					<div class="submit_recipe container">
 						<form method="post" action="Uploadrecipe" enctype="multipart/form-data">
+							<?php if ($isEditMode == true): ?>
+								<input type="hidden" name="previndex" value="<?php echo $currentRecipe[0]['recipeIndex']?>" />
+								<input type="hidden" name="previmg" value="<?php echo $currentRecipe[0]['recipeImg']?>" />
+							<?php endif ?>
 							<section>
 								<h2>Basics</h2>
 								<p>All fields are required.</p>
 								<div class="f-row">
-									<div class="full">Recipe Title: <input type="text" name="recipetitle" placeholder="Recipe title" required /></div>
+									<div class="full">Recipe Title: <input type="text" name="recipetitle" placeholder="Recipe title" value="<?php echo $isEditMode == true ? $currentRecipe[0]['recipeTitle'] : "" ?>" required /></div>
 								</div>
 								<div class="f-row">
-									<div class="third">Prep. Time: <input type="text" name="recipepreptime" placeholder="Preparation time" required /></div>
-									<div class="third">Cooking Time: <input type="text" name="recipecooktime" placeholder="Cooking time" required /></div>
+									<div class="third">Prep. Time: <input type="text" name="recipepreptime" placeholder="Preparation time" value="<?php echo $isEditMode == true ? explode("|||", $currentRecipe[0]['recipeDesc'])[0] : "" ?>" required /></div>
+									<div class="third">Cooking Time: <input type="text" name="recipecooktime" placeholder="Cooking time" value="<?php echo $isEditMode == true ? explode("|||", $currentRecipe[0]['recipeDesc'])[1] : "" ?>" required /></div>
 								</div>
 								<div class="f-row">
-									<div class="third">Serves how many?<input type="text" name="recipeserveshowmany" placeholder="Serves how many people?" /></div>
+									<div class="third">Serves how many?<input type="text" name="recipeserveshowmany" placeholder="Serves how many people?" value="<?php echo $isEditMode == true ? explode("|||", $currentRecipe[0]['recipeDesc'])[2] : "" ?>" /></div>
 									<div class="third">Category:
 										<select name="recipecategory">
-											<option selected="selected">Select a category</option>
+											
+											<option <?php echo $isEditMode == true ? '' : 'selected="selected"' ?>>Select a category</option>
 											<?php foreach ($categories as $cat): ?>
-												<option value="<?php echo urlencode($cat['catname']) ?>"><?php echo $cat['catname'] ?></option>
+												<option <?php echo $isEditMode == false && $currentRecipe[0]['cat'] == $cat['catname'] ? '' : 'selected="selected"' ?> value="<?php echo urlencode($cat['catname']) ?>"><?php echo $cat['catname'] ?></option>
 											<?php endforeach ?>
 										</select>
 									</div>
@@ -132,20 +143,60 @@
 							<section>
 								<h2>Description</h2>
 								<div class="f-row">
-									<div class="full"><textarea placeholder="Recipe description" name="recipedesc"></textarea></div>
+									<div class="full"><textarea placeholder="Recipe description" name="recipedesc" ><?php echo $isEditMode == true ? explode("|||", $currentRecipe[0]['recipeDesc'])[3] : "" ?></textarea></div>
 								</div>
 							</section>	
 							
 							<section>
 								<h2>Ingredients</h2>
 								<div id="inglistmain">
-									<div class="f-row ingredient" id="firsting">
-										<?php $xx = genr(); ?>
-										<div class="large holder">Ingredient: <input type="text" name="_ing<?php echo $xx;?>" class="inginput" placeholder="Ingredient" required /></div>
-										<div class="appendedings"></div>
-										<div class="small">Quantity: <input type="text" name="_quan<?php echo $xx;?>" placeholder="Quantity" required /></div>
-										<button class="remove">-</button>
-									</div>
+									<?php if ($isEditMode == true): ?>
+										<?php $ccc = 0; ?>
+										<?php foreach ($currentRecipeIngredients as $ing): ?>
+											<div class="f-row ingredient" <?php echo $ccc == 0 ? 'id="firsting"' : '' ?> >
+												<?php $xx = genr(); ?>
+
+												<script>
+													$(".inginput_<?php echo $xx; ?>").keyup(function(){
+														if ($(".inginput_<?php echo $xx; ?>").val().length > 2) {
+															$.ajax({
+																type: "POST",
+																url: searchurlconst,
+																data:'i=' + $(".inginput_<?php echo $xx; ?>").val() + '&el=<?php echo $xx; ?>',
+																beforeSend: function(){
+																	$(".inginput_<?php echo $xx; ?>").css("background","#FFF url(images/gil.gif) no-repeat 255px");
+																	$(".inginput_<?php echo $xx; ?>").css("background-size","25px 25px");
+																},
+																success: function(data){
+																	$(".appendedings_<?php echo $xx; ?>").show();
+																	$(".appendedings_<?php echo $xx; ?>").html(data);
+																	$(".inginput_<?php echo $xx; ?>").css("background","#FFF");
+																}
+															});
+														} else {
+															$(".appendedings_<?php echo $xx; ?>").hide();
+														}
+													}); </script>
+												<div class="f-row ingredient" id="ingcontainer_<?php echo $xx; ?>">
+													<div class="large holder">Ingredient: <input type="text" name="_ing<?php echo $xx; ?>" class="inginput_<?php echo $xx; ?>" placeholder="Ingredient" value="<?php echo $ing['ingName'] ?>" required /></div>
+													<div class="appendedings_<?php echo $xx; ?>"></div>
+													<div class="small">Quantity: <input type="text" name="_quan<?php echo $xx; ?>" placeholder="Quantity" value="<?php echo $ing['ingQuantity'] ?>" required /></div>
+													<button class="remove" onClick="$('#ingcontainer_<?php echo $xx; ?>').remove()">-</button>
+												</div>
+
+											</div>
+											<?php $ccc = $ccc + 1; ?>
+										<?php endforeach ?>
+									<?php else: ?>
+										<div class="f-row ingredient" id="firsting">
+											<?php $xx = genr(); ?>
+											<div class="large holder">Ingredient: <input type="text" name="_ing<?php echo $xx;?>" class="inginput" placeholder="Ingredient" required /></div>
+											<div class="appendedings"></div>
+											<div class="small">Quantity: <input type="text" name="_quan<?php echo $xx;?>" placeholder="Quantity" required /></div>
+											<button class="remove">-</button>
+										</div>
+									<?php endif ?>
+									
 									
 								</div>
 								<div class="f-row full">
@@ -156,15 +207,26 @@
 							<section>
 								<h2>Instructions</h2>
 								<div class="f-row">
-									<div class="full"><textarea placeholder="Recipe instructions..." name="recipeinst" id="recipeinst" ></textarea></div>
+									<div class="full"><textarea placeholder="Recipe instructions..." name="recipeinst" id="recipeinst" ><?php echo $currentRecipe[0]['recipeInstructions'] ?></textarea></div>
 								</div>
 							</section>	
 
 							<section>
-								<h2>Photo</h2>
-								<div class="f-row full">
-									<input type="file" name="recipeimg" required/>
-								</div>
+								
+								
+									<?php if ($isEditMode == true): ?>
+										<h2>Photo (old image gets retained if you don't upload a new one)</h2>
+										<div class="f-row full">
+											<input type="file" name="recipeimg" />
+										</div>
+									<?php else: ?>
+										<h2>Photo</h2>
+										<div class="f-row full">
+											<input type="file" name="recipeimg" required/>
+										</div>
+									<?php endif ?>
+									
+								
 							</section>	
 							
 							<section style="display: none;">
@@ -180,7 +242,7 @@
 							</section>
 							
 							<div class="f-row full">
-								<input type="submit" class="button" id="submitRecipe" value="Post this recipe" />
+								<input type="submit" class="button" id="submitRecipe" value="<?php echo $isEditMode == true ? "Update your recipe" : "Post this recipe" ?>" />
 							</div>
 						</form>
 					</div>

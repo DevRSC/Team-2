@@ -29,14 +29,14 @@ class Uploadrecipe extends CI_Controller {
 			$this->upload->initialize($config);
 			if ( ! $this->upload->do_upload('recipeimg')) {
 					$error = array('error' => $this->upload->display_errors());
-					return print_r ($error, true);
+					return "errorrrr";
 			} else {
 					$data = array('upload_data' => $this->upload->data());
 					return $data['upload_data']['file_name'];
 			}
 	}
 	public function index()
-	{
+	{ 
 		//getting post, and then get requests guide
 		// if ($this->input->server('REQUEST_METHOD') == 'POST'){
 		// 	//$this->input->get_post('data', TRUE);
@@ -48,6 +48,16 @@ class Uploadrecipe extends CI_Controller {
 		//$data['userdata'] = $this->Crudcentral->getUsers();
 
 		if ($this->input->server('REQUEST_METHOD') == 'POST') {
+			$isedit = false;
+			$previndex = $this->input->get_post('previndex', TRUE);
+			$previmg = $this->input->get_post('previmg', TRUE);
+			if (empty($previndex)) {
+				$isedit = false;
+			} else {
+				$isedit = true;
+			}
+
+		
 			$recipetitle = $this->input->get_post('recipetitle', TRUE);
 
 			$recipepreptime = $this->input->get_post('recipepreptime', TRUE);
@@ -60,10 +70,26 @@ class Uploadrecipe extends CI_Controller {
 			$recipeinst = $this->input->get_post('recipeinst', TRUE);
 
 			$iimg = $this->do_upload();
-			$res1 = $this->Crudcentral->insertRecipe($recipetitle, $mainrecipedesc, $recipeinst, $iimg, "null", "null", $recipecategory);
+
+			if ($isedit && $iimg == "errorrrr") {
+				$iimg = $previmg;
+			}
+
+			$res1 = array();
+			if ($isedit) {
+				$res1 = $this->Crudcentral->insertRecipe($recipetitle, $mainrecipedesc, $recipeinst, $iimg, "null", "null", $recipecategory, 0, $previndex);
+			} else {
+				$res1 = $this->Crudcentral->insertRecipe($recipetitle, $mainrecipedesc, $recipeinst, $iimg, "null", "null", $recipecategory);
+			}
 
 			if(intval($res1['code']) == 1) {
-				$rrindex = $res1['recIndex'];
+				$rrindex = "";
+				if ($isedit) {
+					$rrindex = $res1['prevRecIndex'];
+				} else {
+					$rrindex = $res1['recIndex'];
+				}
+				
 				foreach($this->input->post() as $key => $val) {
 					//echo "<p>Key: ".$key. " Value:" . $val . "</p>\n";
 					if ($this->strcont($key, "_ing")) {
@@ -75,7 +101,12 @@ class Uploadrecipe extends CI_Controller {
 					}
 				}
 				//redi
-				redirect('Recipes');
+				if ($isedit) {
+					redirect('Recipeview?r=' . urlencode($recipetitle));
+				} else {
+					redirect('Recipes');
+				}
+				
 			} else {
 				//brah
 			}

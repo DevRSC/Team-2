@@ -74,9 +74,6 @@
 						<div class="f-row">
 							<input type="text" name="firstname" placeholder="First name" required />
 						</div>
-						<div class="f-row">
-							<input type="number" name="age" placeholder="Your age" required />
-						</div>
 						<div class="f-row">Your birthdate: 
 							<input type="date" name="birth" placeholder="Your birthdate" required />
 						</div>

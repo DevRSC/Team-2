@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Recipeview extends CI_Controller {
+class Messaging extends CI_Controller {
 
 	public function __construct()
     {
@@ -20,22 +20,18 @@ class Recipeview extends CI_Controller {
 		//foreach($this->input->post() as $key => $val) {
 		// 	echo "<p>Key: ".$key. " Value:" . $val . "</p>\n";
 		// }
-		if (empty($_SESSION['userid'])) { 
-			redirect('Login'); 
-		} else {
-			
-			$aaa = $this->Crudcentral->getRecipeByName($this->input->get('r', TRUE));
-			$data['currentRecipe'] = $aaa;
-			$data['currentRecipeIngredients'] = $this->Crudcentral->getIngredients($data['currentRecipe'][0]['recipeIndex']);
-			$data['currentComments'] = $this->Crudcentral->getAllComments($data['currentRecipe'][0]['recipeIndex']);
-			if (isset($aaa['code'])) {
-				redirect('Recipes');
-			} else {
-				$this->load->view('viewrecipepage', $data);
-			}
-			
+
+		$data['msgsummary'] = $this->Crudcentral->readMessages("mah name chef",2);
+		$a = array();
+		foreach ($data['msgsummary'] as $mm) {
+			array_push($a, array('ind' => $mm['userIndexTo'], 'nm' => $mm['mainname'], 'data' =>  $this->Crudcentral->readMessages($mm['userIndexTo'],0)));
 		}
-	
+		$data['allmsgdata'] = $a;
+		if (empty($_SESSION['userid'])) { 
+			redirect('Login');
+		} else {
+			$this->load->view('msgpage', $data);
+		}
 		
 	}
 }

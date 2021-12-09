@@ -81,11 +81,16 @@
 			
 			<!--row-->
 			<div class="row">
+			
 				<header class="s-title">
 					<h1><?php echo $currentRecipe[0]['recipeTitle']; ?></h1>
 				</header>
+				
 				<!--content-->
 				<section class="content three-fourth">
+					<?php if ($_SESSION['userid'] == $currentRecipe[0]['userIndex']): ?>
+						<a href="Editrecipe?r=<?php echo $currentRecipe[0]['recipeIndex']; ?>" class="button">Edit this recipe</a>
+					<?php endif ?>
 					<!--recipe-->
 						<div class="recipe">
 							<div class="row">
@@ -287,7 +292,7 @@
 						type: "POST",
 						url: "<?php echo site_url('Getcommentslist'); ?>",
 						data:'ind=' + mRecIndex,
-						beforeSend: function(){
+						beforeSend: function(){ 
 							$('.comment-list').empty()
 						},
 						success: function(data){

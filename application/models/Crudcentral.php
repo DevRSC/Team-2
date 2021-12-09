@@ -70,15 +70,15 @@
         public function registerUser($lastname, $firstname, $age, $birthdate, $email, $contactnum, $address, $profilePic, $username, $pword) {
             global $conn;
             $return_arr = array();
-            $sql = "SELECT * FROM usertable WHERE username = ?";
+            $sql = "SELECT * FROM usertable WHERE username = ? OR email = ?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param('s', $username);
+            $stmt->bind_param('ss', $username, $email);
             $stmt->execute();
             $res = $stmt->get_result();
             if ($res->num_rows>0) {
                 $return_arr = array(
                     'code'=>"0",
-                    'msg'=>"Username already exists!"
+                    'msg'=>"Username / Email already exists!"
                 );
             } else {
                 $sql = "INSERT INTO `usertable`(`userIndex`, `lastname`, `firstname`, `age`, `birthdate`, `email`, `contactnum`, `address`, `profilePic`, `username`, `pword`, `dte`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now())";
@@ -259,6 +259,11 @@
                     if (intval($mode) == 1) {
                         $sql = "INSERT INTO `recipetable`(`recipeIndex`, `userIndex`, `commIndex`, `recipeTitle`, `recipeDesc`, `recipeInstructions`, `recipeImg`, `recipeVid`, `recipeDoc`, `publishDate`, `modifyDate`, `isvisible`, `cat`) VALUES (?, ?, 'nocommentbruh', ?, ?, ?, ?, ?, ?, now(), now(), 1, ?)";
                     } else {
+                        //shhhh
+                        $sql34 = "DELETE FROM recipereftable WHERE recipeIndex = ?";
+                        $stmt = $conn->prepare($sql34);
+                        $stmt->bind_param('s', $recipeIndex);
+                        $stmt->execute();
                         $sql = "UPDATE `recipetable` SET `cat` = ? ,`recipeTitle` = ? ,`recipeDesc` = ? ,`recipeInstructions` = ? ,`recipeImg` = ?,`recipeVid` = ?,`recipeDoc` = ?,`modifyDate`=now() WHERE recipeIndex = ?";
                     }
                     $stmt = $conn->prepare($sql);
@@ -446,7 +451,7 @@
                         $return_arr[] = $a;
                     }
                     
-                } else {
+                } else { 
                     $return_arr = array(
                         'code'=>"0",
                         'msg'=>"No recipes!"
@@ -610,7 +615,6 @@
             }
             return $return_arr;
         }
-
 
         //getting ingredients from a specfic recipe
         public function getIngredients($recipeIndex) {
@@ -998,6 +1002,7 @@
         }
 
         //receive message
+        //mode 2 = read all user messages
         //mode 1 = latest
         //mode 0 = all
         public function readMessages($userIndexTo, $mode = 0) {
@@ -1012,12 +1017,19 @@
                 $userIndex = $_SESSION['userid'];
                 $sql = "";
                 if (intval($mode) == 1) {
-                    $sql = "SELECT * FROM `msgtable` WHERE userIndexFrom = ? AND userIndexTo = ? ORDER BY msgDate DESC LIMIT 1";
+                    $sql = "SELECT *, (SELECT CONCAT(usertable.firstname, ' ', usertable.lastname) FROM usertable WHERE usertable.userIndex = msgtable.userIndexTo ) AS mainname FROM `msgtable` WHERE (userIndexFrom = ? AND userIndexTo = ?) OR (userIndexTo = ? AND userIndexFrom = ?)  ORDER BY msgDate DESC LIMIT 1";
+                } else if (intval($mode) == 2) {
+                    $sql = "SELECT *, (SELECT CONCAT(usertable.firstname, ' ', usertable.lastname) FROM usertable WHERE usertable.userIndex = msgtable.userIndexTo ) AS mainname FROM `msgtable` WHERE userIndexFrom = ? GROUP BY userIndexTo ORDER BY msgDate";
                 } else {
-                    $sql = "SELECT * FROM `msgtable` WHERE userIndexFrom = ? AND userIndexTo = ? ORDER BY msgDate";
+                    $sql = "SELECT *, (SELECT CONCAT(usertable.firstname, ' ', usertable.lastname) FROM usertable WHERE usertable.userIndex = msgtable.userIndexTo ) AS mainname FROM `msgtable` WHERE (userIndexFrom = ? AND userIndexTo = ?) OR (userIndexTo = ? AND userIndexFrom = ?) ORDER BY msgDate";
                 }
                 $stmt = $conn->prepare($sql);
-                $stmt->bind_param('ss', $userIndex, $userIndexTo);
+                if ((intval($mode) == 2)) {
+                    $stmt->bind_param('s', $userIndex);
+                } else {
+                    $stmt->bind_param('ssss', $userIndex, $userIndexTo, $userIndex, $userIndexTo);
+                }
+                
                 $stmt->execute();
                 $res = $stmt->get_result();
                 if ($res->num_rows>0) {
