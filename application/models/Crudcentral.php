@@ -2,11 +2,13 @@
     //Gil says: "Thou shall not copy others' code as it is their intellectual property."
     //Gil says: "Thou shall not post others' code to Twitter and claim it as your own, as you will induce a lifetime curse of you being an approval seeker and a fake showoff."
     $conn;
+	
+	
     class Crudcentral extends CI_Model {
         public function __construct() {
             $this->load->library('session');
             global $conn;
-            $conn = mysqli_connect("localhost", "root", "", "mealsformakers");
+            $conn = mysqli_connect("localhost", "[REDACTED LODS]", "[REDACTED LODS]", "mealsformakers");
         }
 
         //for password hashing
@@ -42,6 +44,15 @@
             }
         }
 
+		//generation of random numbers
+        public function genrNum($length = 6) {
+            $characters = '0123456789';
+            $rand = '';
+            for ($i = 0; $i < $length; $i++) {
+                $rand .= $characters[rand(0, (strlen($characters)) - 1)];
+            }
+            return $rand;
+        }
         //this function is for testing purposes only
         public function getUsers() {
             global $conn;
@@ -70,15 +81,15 @@
         public function registerUser($lastname, $firstname, $age, $birthdate, $email, $contactnum, $address, $profilePic, $username, $pword) {
             global $conn;
             $return_arr = array();
-            $sql = "SELECT * FROM usertable WHERE username = ?";
+            $sql = "SELECT * FROM usertable WHERE username = ? OR email = ?";
             $stmt = $conn->prepare($sql);
-            $stmt->bind_param('s', $username);
+            $stmt->bind_param('ss', $username, $email);
             $stmt->execute();
             $res = $stmt->get_result();
             if ($res->num_rows>0) {
                 $return_arr = array(
                     'code'=>"0",
-                    'msg'=>"Username already exists!"
+                    'msg'=>"Username / Email already exists!"
                 );
             } else {
                 $sql = "INSERT INTO `usertable`(`userIndex`, `lastname`, `firstname`, `age`, `birthdate`, `email`, `contactnum`, `address`, `profilePic`, `username`, `pword`, `dte`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, now())";
@@ -172,7 +183,8 @@
                 if (!empty($_SESSION['userid'])) {
                     $userIndex = $_SESSION['userid'];
                 }
-                $sql = "SELECT *, (SELECT COUNT(recipeIndex) FROM recipetable WHERE recipetable.userIndex = usertable.userIndex) AS recipecount, (SELECT COUNT(commIndex) FROM commtable WHERE commtable.userIndex = usertable.userIndex) AS commcount, (SELECT ingtable.ingName FROM ingtable WHERE ingtable.ingIndex = (SELECT recipereftable.ingIndex FROM recipereftable WHERE recipereftable.recipeIndex = (SELECT recipetable.recipeIndex FROM recipetable WHERE recipetable.userIndex = usertable.userIndex) GROUP BY recipereftable.ingIndex ORDER BY (COUNT(recipereftable.ingIndex)) DESC LIMIT 1)) AS freqing FROM usertable WHERE userIndex = ?";
+				
+                $sql = "SELECT *, (SELECT COUNT(recipeIndex) FROM recipetable WHERE recipetable.userIndex = usertable.userIndex) AS recipecount, (SELECT COUNT(commIndex) FROM commtable WHERE commtable.userIndex = usertable.userIndex) AS commcount, (SELECT ingtable.ingName FROM ingtable WHERE ingtable.ingIndex = (SELECT recipereftable.ingIndex FROM recipereftable WHERE recipereftable.recipeIndex = (SELECT recipetable.recipeIndex FROM recipetable WHERE recipetable.userIndex = usertable.userIndex LIMIT 1) GROUP BY recipereftable.ingIndex ORDER BY (COUNT(recipereftable.ingIndex)) DESC LIMIT 1)) AS freqing FROM usertable WHERE userIndex = ?";
                 //thats a large query boi
                 $stmt = $conn->prepare($sql);
                 if ($user == "null") {
@@ -195,6 +207,38 @@
                 }
             }
             return $return_arr;
+        }
+		//get user by username / email
+		public function getUserByNotIndex($user) {
+            global $conn;
+            $return_arr = array();
+                $sql = "SELECT * FROM usertable WHERE username = ? OR email = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param('ss', $user, $user);
+                $stmt->execute();
+                $res = $stmt->get_result();
+                if ($res->num_rows>0) {
+                    while ($a = $res->fetch_assoc()) {
+                        $return_arr[] = $a;
+                    }
+                } else {
+                    $return_arr = array(
+                        'code'=>"0",
+                        'msg'=>"User not found!"
+                    );
+                }
+            
+            return $return_arr;
+        }
+		
+		//update user password
+		public function updateUserPass($user, $pass) {
+            global $conn;
+			$mainpass = $this->shaenc($pass);
+                $sql = "UPDATE usertable SET pword = ? WHERE userIndex = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param('ss', $mainpass, $user);
+                $stmt->execute();
         }
 
         //login user function
@@ -244,12 +288,12 @@
                     'msg'=>"No user is logged in!"
                 );
             } else {
-                $sql = "SELECT * FROM recipetable WHERE recipeTitle = ?";
+                $sql = "SELECT * FROM recipetable WHERE recipeTitle = ? AND isvisible = 1";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param('s', $title);
                 $stmt->execute();
                 $res = $stmt->get_result();
-                if ($res->num_rows>0) {
+                if ($res->num_rows>0 && $recipeIndex == "null") {
                     $return_arr = array(
                         'code'=>"0",
                         'msg'=>"Recipe title already exists!"
@@ -259,6 +303,11 @@
                     if (intval($mode) == 1) {
                         $sql = "INSERT INTO `recipetable`(`recipeIndex`, `userIndex`, `commIndex`, `recipeTitle`, `recipeDesc`, `recipeInstructions`, `recipeImg`, `recipeVid`, `recipeDoc`, `publishDate`, `modifyDate`, `isvisible`, `cat`) VALUES (?, ?, 'nocommentbruh', ?, ?, ?, ?, ?, ?, now(), now(), 1, ?)";
                     } else {
+                        //shhhh
+                        $sql34 = "DELETE FROM recipereftable WHERE recipeIndex = ?";
+                        $stmt = $conn->prepare($sql34);
+                        $stmt->bind_param('s', $recipeIndex);
+                        $stmt->execute();
                         $sql = "UPDATE `recipetable` SET `cat` = ? ,`recipeTitle` = ? ,`recipeDesc` = ? ,`recipeInstructions` = ? ,`recipeImg` = ?,`recipeVid` = ?,`recipeDoc` = ?,`modifyDate`=now() WHERE recipeIndex = ?";
                     }
                     $stmt = $conn->prepare($sql);
@@ -385,6 +434,7 @@
         //get all recipe summary list
         public function getAllRecipes_summary($cat = "all", $limitation = -1) {
             global $conn;
+			
             $return_arr = array();
 
                 $sql = "SELECT *, (SELECT CONCAT(usertable.firstname, ' ', usertable.lastname) FROM usertable WHERE usertable.userIndex = recipetable.userIndex) AS recipeauthor, (SELECT COUNT(commIndex) FROM commtable WHERE commtable.recipeIndex = recipetable.recipeIndex) AS commcount FROM recipetable WHERE isvisible = 1 ORDER BY modifyDate DESC";
@@ -446,7 +496,7 @@
                         $return_arr[] = $a;
                     }
                     
-                } else {
+                } else { 
                     $return_arr = array(
                         'code'=>"0",
                         'msg'=>"No recipes!"
@@ -610,7 +660,6 @@
             }
             return $return_arr;
         }
-
 
         //getting ingredients from a specfic recipe
         public function getIngredients($recipeIndex) {
@@ -998,6 +1047,7 @@
         }
 
         //receive message
+        //mode 2 = read all user messages
         //mode 1 = latest
         //mode 0 = all
         public function readMessages($userIndexTo, $mode = 0) {
@@ -1012,12 +1062,19 @@
                 $userIndex = $_SESSION['userid'];
                 $sql = "";
                 if (intval($mode) == 1) {
-                    $sql = "SELECT * FROM `msgtable` WHERE userIndexFrom = ? AND userIndexTo = ? ORDER BY msgDate DESC LIMIT 1";
+                    $sql = "SELECT *, (SELECT CONCAT(usertable.firstname, ' ', usertable.lastname) FROM usertable WHERE usertable.userIndex = msgtable.userIndexTo ) AS mainname FROM `msgtable` WHERE (userIndexFrom = ? AND userIndexTo = ?) OR (userIndexTo = ? AND userIndexFrom = ?)  ORDER BY msgDate DESC LIMIT 1";
+                } else if (intval($mode) == 2) {
+                    $sql = "SELECT *, (SELECT CONCAT(usertable.firstname, ' ', usertable.lastname) FROM usertable WHERE usertable.userIndex = msgtable.userIndexTo ) AS mainname FROM `msgtable` WHERE userIndexFrom = ? GROUP BY userIndexTo ORDER BY msgDate ";
                 } else {
-                    $sql = "SELECT * FROM `msgtable` WHERE userIndexFrom = ? AND userIndexTo = ? ORDER BY msgDate";
+                    $sql = "SELECT *, (SELECT CONCAT(usertable.firstname, ' ', usertable.lastname) FROM usertable WHERE usertable.userIndex = msgtable.userIndexTo ) AS mainname FROM `msgtable` WHERE (userIndexFrom = ? AND userIndexTo = ?) OR (userIndexTo = ? AND userIndexFrom = ?) ORDER BY msgDate ";
                 }
                 $stmt = $conn->prepare($sql);
-                $stmt->bind_param('ss', $userIndex, $userIndexTo);
+                if ((intval($mode) == 2)) {
+                    $stmt->bind_param('s', $userIndex);
+                } else {
+                    $stmt->bind_param('ssss', $userIndex, $userIndexTo, $userIndex, $userIndexTo);
+                }
+                
                 $stmt->execute();
                 $res = $stmt->get_result();
                 if ($res->num_rows>0) {
@@ -1071,6 +1128,47 @@
             
             return $return_arr;
         }
+		
+		public function sendMail($subjectt, $messagee, $too) {
+			require('somemail/class.phpmailer.php');
+			$mail = new PHPMailer();
+			$mail->IsSMTP();
+			$mail->Host = "smtp.gmail.com"; 
+			$mail->SMTPSecure = 'tls';
+			$mail->SMTPAuth = true;
+			$mail->SMTPOptions = array(
+				'ssl' => array(
+					'verify_peer' => false,
+					'verify_peer_name' => false,
+					'allow_self_signed' => true
+				)
+			);
+			$mail->Username = "mealsformakersmail@gmail.com";
+			$mail->Password = "m34l\$f0rm4k3r\$";
+			$mail->From = "mealsformakersmail@gmail.com";
+			$mail->FromName = "Meals for Makers Team";
+			$mail->setFrom("mealsformakersmail@gmail.com", "Meals for Makers Team");
+			
+			
+			$mail->AddAddress($too, $too);
+			
+			$mail->WordWrap = 50;
+			$mail->IsHTML(true);
+			$mail->AddEmbeddedImage("images/ico/logo2.png", "log");
+			$mail->Subject = $subjectt;
+			
+			$message = "<center><img style=\"height: 200px;\" src=\"cid:log\" />" . $messagee . "</center>";
+
+			$mail->Body    = $message;
+			$mail->AltBody = $message;
+
+			if(!$mail->Send())
+			{
+			   echo "Message could not be sent. ";
+			   echo "Mailer Error: " . $mail->ErrorInfo;
+			   die();
+			}
+		}
 
     }
 ?>

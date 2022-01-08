@@ -21,7 +21,7 @@ class Recipeview extends CI_Controller {
 		// 	echo "<p>Key: ".$key. " Value:" . $val . "</p>\n";
 		// }
 		if (empty($_SESSION['userid'])) { 
-			redirect('Login');
+			redirect('Login'); 
 		} else {
 			
 			$aaa = $this->Crudcentral->getRecipeByName($this->input->get('r', TRUE));
