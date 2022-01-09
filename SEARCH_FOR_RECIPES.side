@@ -1,0 +1,664 @@
+{
+  "id": "8b274727-74ec-44f9-b924-2e4c8144ddd0",
+  "version": "2.0",
+  "name": "SEARCH_FOR_RECIPES",
+  "url": "https://mealsformakers.xyz",
+  "tests": [{
+    "id": "2cf272b1-ea70-4b58-8921-b38e2c0d19f9",
+    "name": "Untitled",
+    "commands": [{
+      "id": "0ed14440-e766-4915-b7e3-c9101e4cb59b",
+      "comment": "",
+      "command": "open",
+      "target": "/Searchrecipes",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "557c3de8-b197-453a-86e7-efbe2047a8ad",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1382x744",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bf39c396-5cb4-4100-b889-f56e34352527",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d52c4fbb-9ae9-48fa-9a4e-f15d12227fc6",
+      "comment": "",
+      "command": "type",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "salt"
+    }, {
+      "id": "a4556233-1191-4363-9832-c224eac7514a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.ing-list > li:nth-child(2)",
+      "targets": [
+        ["css=.ing-list > li:nth-child(2)", "css:finder"],
+        ["xpath=//li[@onclick=\"selectIng('Salt', 'firstiing');\"]", "xpath:attributes"],
+        ["xpath=//div/ul/li[2]", "xpath:position"],
+        ["xpath=//li[contains(.,'Salt')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "81057ff4-7ba4-47d7-8c96-93b6292c2caf",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0fb684ca-54b6-4763-92ab-47855a988bd6",
+      "comment": "",
+      "command": "type",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "potato"
+    }, {
+      "id": "be9fc162-7cd8-4b54-9ff3-c0a0d42646a1",
+      "comment": "",
+      "command": "click",
+      "target": "css=.f-row:nth-child(4) > input",
+      "targets": [
+        ["css=.f-row:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@value='Search']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b1a45a42-4f5d-4da7-8b5a-450daceebd43",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0c54303d-8a90-45e0-8ded-a2d40cce2310",
+      "comment": "",
+      "command": "type",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "flour"
+    }, {
+      "id": "69957acc-306f-4397-99c9-355e1d83039c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.ing-list > li",
+      "targets": [
+        ["css=.ing-list > li", "css:finder"],
+        ["xpath=//li[@onclick=\"selectIng('Flour', 'firstiing');\"]", "xpath:attributes"],
+        ["xpath=//div/ul/li", "xpath:position"],
+        ["xpath=//li[contains(.,'Flour')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7fec97ec-d277-4a2c-ba20-3fca85deef3a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.f-row:nth-child(4) > input",
+      "targets": [
+        ["css=.f-row:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@value='Search']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dba9dc38-cb8f-4dd0-9408-8a325727c96a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.f-row:nth-child(4) > input",
+      "targets": [
+        ["css=.f-row:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@value='Search']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ecb2b692-3712-4d9f-9e15-7ffc3a221dff",
+      "comment": "",
+      "command": "click",
+      "target": "css=.f-row > .button",
+      "targets": [
+        ["css=.f-row > .button", "css:finder"],
+        ["xpath=//a[contains(text(),'Reset')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, 'Searchrecipes')])[2]", "xpath:href"],
+        ["xpath=//div[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "424f6d3c-e8e1-4850-b3cc-7b26d08b8252",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5306d572-7ca0-405c-a26e-3bb054e0a916",
+      "comment": "",
+      "command": "type",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "pork"
+    }, {
+      "id": "b1f52f2d-1fe3-41f3-80b8-8d076ac03e95",
+      "comment": "",
+      "command": "click",
+      "target": "css=.f-row:nth-child(4) > input",
+      "targets": [
+        ["css=.f-row:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@value='Search']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "543928a0-967c-4e2d-9dcd-5e3756e5f74a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "31c842d1-958a-411b-9c62-cc5008ec5d15",
+      "comment": "",
+      "command": "type",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "egg"
+    }, {
+      "id": "822e7928-f20e-4785-af5a-a5f46a177319",
+      "comment": "",
+      "command": "click",
+      "target": "css=.ing-list > li",
+      "targets": [
+        ["css=.ing-list > li", "css:finder"],
+        ["xpath=//li[@onclick=\"selectIng('Egg', 'firstiing');\"]", "xpath:attributes"],
+        ["xpath=//div/ul/li", "xpath:position"],
+        ["xpath=//li[contains(.,'Egg')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "aad1268c-70ef-4e61-91b0-763ec38144d7",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "56b1897e-e3b9-4564-8962-99748ac67e33",
+      "comment": "",
+      "command": "type",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "potato"
+    }, {
+      "id": "500a1ea0-230c-4764-a046-74258038ac4c",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "f6f720e9-ebf1-44dd-b53c-d19511a44f97",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7182c4a6-d39d-43e9-9fd5-71a876c33d9f",
+      "comment": "",
+      "command": "type",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "flour"
+    }, {
+      "id": "95735e10-f124-4996-b60a-856a476a7a46",
+      "comment": "",
+      "command": "click",
+      "target": "css=.ing-list > li",
+      "targets": [
+        ["css=.ing-list > li", "css:finder"],
+        ["xpath=//li[@onclick=\"selectIng('Flour', 'firstiing');\"]", "xpath:attributes"],
+        ["xpath=//div/ul/li", "xpath:position"],
+        ["xpath=//li[contains(.,'Flour')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2ce67872-94ba-406a-84a8-8e2a2acf9b3d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "20c3f935-74f3-4805-a820-45371a73df6d",
+      "comment": "",
+      "command": "type",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "tomato"
+    }, {
+      "id": "78de9e63-9093-46a9-99b7-1bb712b39c61",
+      "comment": "",
+      "command": "click",
+      "target": "css=.f-row:nth-child(4) > input",
+      "targets": [
+        ["css=.f-row:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@value='Search']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fd3d4168-7cec-42e8-8dfe-5dd11ec9fcdd",
+      "comment": "",
+      "command": "click",
+      "target": "css=.f-row > .button",
+      "targets": [
+        ["css=.f-row > .button", "css:finder"],
+        ["xpath=//a[contains(text(),'Reset')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, 'Searchrecipes')])[2]", "xpath:href"],
+        ["xpath=//div[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "888ba419-cc1e-4d34-9c01-022595a1ecc3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7ecbb25e-8e38-4fad-8493-8bbf1dd2e3b8",
+      "comment": "",
+      "command": "type",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "skhsksncbjf"
+    }, {
+      "id": "8a0199c8-1394-4d21-8fba-fc409a155478",
+      "comment": "",
+      "command": "click",
+      "target": "css=.f-row:nth-child(4) > input",
+      "targets": [
+        ["css=.f-row:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@value='Search']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "56ee7d08-0ce4-4c06-a057-2f58410e2e68",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "336e8e81-3d86-430d-9ef4-a41de07a9f88",
+      "comment": "",
+      "command": "type",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "1234567"
+    }, {
+      "id": "9b39a997-c216-40e5-8d3d-6b1df94c19d0",
+      "comment": "",
+      "command": "click",
+      "target": "css=input:nth-child(2)",
+      "targets": [
+        ["css=input:nth-child(2)", "css:finder"],
+        ["xpath=//input[@value='Search']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0192e2ca-20fe-477c-9d95-4b9d3f81a6f8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "18e10222-1fb6-4a93-a219-3eafefaae608",
+      "comment": "",
+      "command": "type",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "EGG"
+    }, {
+      "id": "9c0e76a3-45f6-4691-9dfe-3f963efc182a",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "c1021d3d-2698-464c-b91e-92f8f8e17685",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7d4d9e8e-7e9d-422c-baa7-9a829eed53fe",
+      "comment": "",
+      "command": "type",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "FLOUR"
+    }, {
+      "id": "ce98ae30-7143-44ad-bc98-60e0beb3c13f",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "bb23b5cb-0f55-4f4a-82da-06f515ff9500",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "433b1f6c-6921-40f1-a478-1316d91b9514",
+      "comment": "",
+      "command": "type",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "SALT"
+    }, {
+      "id": "d534ad6e-f5dd-4bd0-a30d-44a0ced189ef",
+      "comment": "",
+      "command": "mouseUp",
+      "target": "css=.ing-list > li:nth-child(2)",
+      "targets": [
+        ["css=.ing-list > li:nth-child(2)", "css:finder"],
+        ["xpath=//li[@onclick=\"selectIng('Salt', 'firstiing');\"]", "xpath:attributes"],
+        ["xpath=//div/ul/li[2]", "xpath:position"],
+        ["xpath=//li[contains(.,'Salt')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c69c881d-310f-4c6c-bb55-5f5f468a50de",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "334e5e4f-5bcf-4e44-abe2-4a0ca134253f",
+      "comment": "",
+      "command": "type",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "GARLIC"
+    }, {
+      "id": "bf86bb05-3d73-4889-a1d3-fbe6639a2583",
+      "comment": "",
+      "command": "click",
+      "target": "css=.ing-list > li",
+      "targets": [
+        ["css=.ing-list > li", "css:finder"],
+        ["xpath=//li[@onclick=\"selectIng('Garlic', 'firstiing');\"]", "xpath:attributes"],
+        ["xpath=//div/ul/li", "xpath:position"],
+        ["xpath=//li[contains(.,'Garlic')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c14afd9b-f2c1-4538-9570-dd1b75385269",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "50ffbd34-465e-43a2-aa91-1f62fc733c0d",
+      "comment": "",
+      "command": "type",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "ONION"
+    }, {
+      "id": "e16eb9d1-3ed3-47c2-8002-7576db52ae2d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.ing-list > li",
+      "targets": [
+        ["css=.ing-list > li", "css:finder"],
+        ["xpath=//li[@onclick=\"selectIng('Onion', 'firstiing');\"]", "xpath:attributes"],
+        ["xpath=//div/ul/li", "xpath:position"],
+        ["xpath=//li[contains(.,'Onion')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9ef1bc49-cb2a-419b-a7e6-2137e3b942e9",
+      "comment": "",
+      "command": "click",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0ee5eb9f-7da3-41eb-a402-ac9c286e0671",
+      "comment": "",
+      "command": "type",
+      "target": "css=.inginput",
+      "targets": [
+        ["css=.inginput", "css:finder"],
+        ["xpath=//input[@type='text']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "soy"
+    }, {
+      "id": "f373a903-5bc5-4484-b5f6-1196a38a07e4",
+      "comment": "",
+      "command": "click",
+      "target": "css=.ing-list > li",
+      "targets": [
+        ["css=.ing-list > li", "css:finder"],
+        ["xpath=//li[@onclick=\"selectIng('Soy Sauce', 'firstiing');\"]", "xpath:attributes"],
+        ["xpath=//div/ul/li", "xpath:position"],
+        ["xpath=//li[contains(.,'Soy Sauce')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "586d947a-1071-4f31-bb4f-de361850b9bf",
+      "comment": "",
+      "command": "mouseOver",
+      "target": "css=.ing-list > li",
+      "targets": [
+        ["css=.ing-list > li", "css:finder"],
+        ["xpath=//li[@onclick=\"selectIng('Soy Sauce', 'firstiing');\"]", "xpath:attributes"],
+        ["xpath=//div/ul/li", "xpath:position"],
+        ["xpath=//li[contains(.,'Soy Sauce')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a2bc967e-0c8a-4287-b884-14c78dcde978",
+      "comment": "",
+      "command": "mouseOut",
+      "target": "css=.ing-list > li",
+      "targets": [
+        ["css=.ing-list > li", "css:finder"],
+        ["xpath=//li[@onclick=\"selectIng('Soy Sauce', 'firstiing');\"]", "xpath:attributes"],
+        ["xpath=//div/ul/li", "xpath:position"],
+        ["xpath=//li[contains(.,'Soy Sauce')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2cb9905e-5c63-427f-92e3-a699a7a4498c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.f-row:nth-child(4) > input",
+      "targets": [
+        ["css=.f-row:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@value='Search']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "05dc7f2e-121f-4a6d-9e39-372b3fb6774f",
+      "comment": "",
+      "command": "click",
+      "target": "css=.f-row > .button",
+      "targets": [
+        ["css=.f-row > .button", "css:finder"],
+        ["xpath=//a[contains(text(),'Reset')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, 'Searchrecipes')])[2]", "xpath:href"],
+        ["xpath=//div[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "d3847b97-e2a4-4179-b1fe-12a4761c0f8e",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["2cf272b1-ea70-4b58-8921-b38e2c0d19f9"]
+  }],
+  "urls": ["https://mealsformakers.xyz/"],
+  "plugins": []
+}
