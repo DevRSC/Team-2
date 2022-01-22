@@ -1,0 +1,803 @@
+{
+  "id": "f440a7d3-d890-4c9d-8155-d1c7d5fc580e",
+  "version": "2.0",
+  "name": "Meals for makers bug reports",
+  "url": "https://mealsformakers.xyz",
+  "tests": [{
+    "id": "96d1155c-1881-41a3-a386-6f13d9b42ea4",
+    "name": "Bug Report landing Page both unregistered and registered user (07/01/2022)",
+    "commands": [{
+      "id": "6d227b66-dceb-4927-8270-d439d1138cf0",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "5c77ec06-052e-4ed7-91f0-2dc0a0bcb939",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x832",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0a6df3a5-3563-4a69-adea-f86dc60b399b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Join our community",
+      "targets": [
+        ["linkText=Join our community", "linkText"],
+        ["css=.white", "css:finder"],
+        ["xpath=//a[contains(text(),'Join our community')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'register')]", "xpath:href"],
+        ["xpath=//article/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Join our community ')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "06308631-eaad-4aad-a40e-ff39b9203587",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Search for recipes now!",
+      "targets": [
+        ["linkText=Search for recipes now!", "linkText"],
+        ["css=.f-row > .button", "css:finder"],
+        ["xpath=//a[contains(text(),'Search for recipes now!')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, 'Searchrecipes')])[2]", "xpath:href"],
+        ["xpath=//div[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Search for recipes now!')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "9db92b46-0eee-4863-a82b-b7ed2102a96c",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Join us!",
+      "targets": [
+        ["linkText=Join us!", "linkText"],
+        ["css=.cta > .button", "css:finder"],
+        ["xpath=//a[contains(text(),'Join us!')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, 'register')])[2]", "xpath:href"],
+        ["xpath=//div[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Join us!')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "f674a35a-56bb-49d5-9874-491a787b8a89",
+      "comment": "",
+      "command": "click",
+      "target": "css=.two-third .button",
+      "targets": [
+        ["css=.two-third .button", "css:finder"],
+        ["xpath=//a[contains(text(),'See the full recipe')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, 'Recipeview?r=Sample+Recipe+1')])[3]", "xpath:href"],
+        ["xpath=//article/div/div/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f9b3b3fb-82f5-49d2-9ce2-d55ac48b70ed",
+      "comment": "",
+      "command": "click",
+      "target": "css=.one-third .button",
+      "targets": [
+        ["css=.one-third .button", "css:finder"],
+        ["xpath=(//a[contains(@href, 'Accountview?a=3jRVlZK')])[3]", "xpath:href"],
+        ["xpath=//div[2]/article/div/div/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b332f39d-cb81-4e2d-a82c-9a28ec50078e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.icon-themeenergy_pasta",
+      "targets": [
+        ["css=.icon-themeenergy_pasta", "css:finder"],
+        ["xpath=//div/ul/li/a/i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "405c874f-16f8-4ba5-9da9-07c58b528460",
+      "comment": "",
+      "command": "click",
+      "target": "css=.light:nth-child(2) span",
+      "targets": [
+        ["css=.light:nth-child(2) span", "css:finder"],
+        ["xpath=//div/ul/li[2]/a/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8cf5b339-d0ed-450e-a2ed-cf9094b8a2f2",
+      "comment": "",
+      "command": "click",
+      "target": "css=.light:nth-child(3) > a",
+      "targets": [
+        ["css=.light:nth-child(3) > a", "css:finder"],
+        ["xpath=//a[contains(@href, 'recipes?cat=Dinner')]", "xpath:href"],
+        ["xpath=//div/ul/li[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "505651e9-316f-4e15-8479-947110f94156",
+      "comment": "",
+      "command": "click",
+      "target": "css=.light:nth-child(4) > a",
+      "targets": [
+        ["css=.light:nth-child(4) > a", "css:finder"],
+        ["xpath=//a[contains(@href, 'recipes?cat=Snacks')]", "xpath:href"],
+        ["xpath=//div/ul/li[4]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a6d96234-6855-49dc-ada5-90a72a47bd4c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.light:nth-child(5) span",
+      "targets": [
+        ["css=.light:nth-child(5) span", "css:finder"],
+        ["xpath=//li[5]/a/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e4a7f347-131e-4a26-ba1a-4b891d8bec50",
+      "comment": "",
+      "command": "click",
+      "target": "css=.light:nth-child(6) > a",
+      "targets": [
+        ["css=.light:nth-child(6) > a", "css:finder"],
+        ["xpath=//a[contains(@href, 'recipes?cat=Miscellaneous')]", "xpath:href"],
+        ["xpath=//li[6]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "53e24a00-7a6a-4848-8f3a-1696fe8ed177",
+      "comment": "",
+      "command": "click",
+      "target": "css=.light:nth-child(6) span",
+      "targets": [
+        ["css=.light:nth-child(6) span", "css:finder"],
+        ["xpath=//li[6]/a/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "50d0cd5d-fc04-4647-bfff-0e54987f9355",
+      "comment": "",
+      "command": "click",
+      "target": "css=.container",
+      "targets": [
+        ["css=.container", "css:finder"],
+        ["xpath=//div/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bd332cea-a022-4997-bb60-529d66509148",
+      "comment": "",
+      "command": "click",
+      "target": "css=figcaption span",
+      "targets": [
+        ["css=figcaption span", "css:finder"],
+        ["xpath=//figcaption/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'View recipe')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "c0ac8f6f-e9b7-4938-800d-3a5ec2cf04ca",
+      "comment": "",
+      "command": "click",
+      "target": "css=.entry:nth-child(1) span",
+      "targets": [
+        ["css=.entry:nth-child(1) span", "css:finder"],
+        ["xpath=//div/figure/figcaption/a/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "62531d99-f212-4494-8260-e2ceabf6646b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.one-third:nth-child(2) > figure span",
+      "targets": [
+        ["css=.one-third:nth-child(2) > figure span", "css:finder"],
+        ["xpath=//div[2]/figure/figcaption/a/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "11d92395-ca9d-4ee7-a574-b43c9372966e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.entry:nth-child(3) span",
+      "targets": [
+        ["css=.entry:nth-child(3) span", "css:finder"],
+        ["xpath=//div[3]/figure/figcaption/a/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d7cf5c39-e523-48b2-91c9-67d8470c3090",
+      "comment": "",
+      "command": "click",
+      "target": "css=.quicklinks > .button:nth-child(1)",
+      "targets": [
+        ["css=.quicklinks > .button:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(text(),'More recipes')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, 'Recipes')])[3]", "xpath:href"],
+        ["xpath=//div[2]/div/div[4]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4d891c44-1ac3-4b05-a6cb-4aa4acfba069",
+      "comment": "",
+      "command": "click",
+      "target": "css=.scroll-to-top",
+      "targets": [
+        ["css=.scroll-to-top", "css:finder"],
+        ["xpath=//a[contains(text(),'Back to top')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'javascript:void(0)')]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "79923f5e-0b08-4aff-9e2b-9ce3f51d551b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=here",
+      "targets": [
+        ["linkText=here", "linkText"],
+        ["css=p:nth-child(5) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'here')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, 'Login')])[3]", "xpath:href"],
+        ["xpath=//p[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'here')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "07dea605-bf0d-4bc9-80f5-550e5aaad28b",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Sign up.",
+      "targets": [
+        ["linkText=Sign up.", "linkText"],
+        ["css=p:nth-child(6) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'Sign up.')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'register')]", "xpath:href"],
+        ["xpath=//p[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Sign up.')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "a120e7d3-a6c3-4743-a018-b1b6210ed5f8",
+      "comment": "",
+      "command": "click",
+      "target": "name=lastname",
+      "targets": [
+        ["name=lastname", "name"],
+        ["css=.f-row:nth-child(2) > input", "css:finder"],
+        ["xpath=//input[@name='lastname']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "219ef748-5cb8-40d1-90fd-57f133f077ba",
+      "comment": "",
+      "command": "type",
+      "target": "name=lastname",
+      "targets": [
+        ["name=lastname", "name"],
+        ["css=.f-row:nth-child(2) > input", "css:finder"],
+        ["xpath=//input[@name='lastname']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "De Castro"
+    }, {
+      "id": "ace748de-54f9-484c-98cb-794e7b1bebd3",
+      "comment": "",
+      "command": "click",
+      "target": "name=firstname",
+      "targets": [
+        ["name=firstname", "name"],
+        ["css=.f-row:nth-child(3) > input", "css:finder"],
+        ["xpath=//input[@name='firstname']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "abff6050-0f14-47b3-82a3-51bd3843ac05",
+      "comment": "",
+      "command": "type",
+      "target": "name=firstname",
+      "targets": [
+        ["name=firstname", "name"],
+        ["css=.f-row:nth-child(3) > input", "css:finder"],
+        ["xpath=//input[@name='firstname']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "Kyle Christian "
+    }, {
+      "id": "24d50850-b91e-4115-9c1f-414aded7add9",
+      "comment": "",
+      "command": "click",
+      "target": "name=birth",
+      "targets": [
+        ["name=birth", "name"],
+        ["css=.f-row:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='birth']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1dedcf47-413b-441f-a52f-7b37fa403907",
+      "comment": "",
+      "command": "click",
+      "target": "name=birth",
+      "targets": [
+        ["name=birth", "name"],
+        ["css=.f-row:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='birth']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0cfdd149-510d-4a6d-9639-377e70e2e65c",
+      "comment": "",
+      "command": "type",
+      "target": "name=birth",
+      "targets": [
+        ["name=birth", "name"],
+        ["css=.f-row:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='birth']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "0002-09-17"
+    }, {
+      "id": "b805d5df-88cc-4d97-ab16-c598229913b0",
+      "comment": "",
+      "command": "type",
+      "target": "name=birth",
+      "targets": [
+        ["name=birth", "name"],
+        ["css=.f-row:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='birth']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "0020-09-17"
+    }, {
+      "id": "860b3f81-354a-46dc-b90b-31664ad10185",
+      "comment": "",
+      "command": "type",
+      "target": "name=birth",
+      "targets": [
+        ["name=birth", "name"],
+        ["css=.f-row:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='birth']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "0200-09-17"
+    }, {
+      "id": "d4f631de-0cef-457d-88bd-606268e954c3",
+      "comment": "",
+      "command": "type",
+      "target": "name=birth",
+      "targets": [
+        ["name=birth", "name"],
+        ["css=.f-row:nth-child(4) > input", "css:finder"],
+        ["xpath=//input[@name='birth']", "xpath:attributes"],
+        ["xpath=//div[3]/input", "xpath:position"]
+      ],
+      "value": "2000-09-17"
+    }, {
+      "id": "4cec10c9-f59f-4d4e-97bd-177353130a44",
+      "comment": "",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.f-row:nth-child(5) > input", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0358db2f-52d6-485d-8632-b8df2a94907f",
+      "comment": "",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.f-row:nth-child(5) > input", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//div[4]/input", "xpath:position"]
+      ],
+      "value": "dunno@yahoo.com"
+    }, {
+      "id": "4aac290a-ce64-4d8a-9a1c-cb2179e8b72f",
+      "comment": "",
+      "command": "click",
+      "target": "name=contact",
+      "targets": [
+        ["name=contact", "name"],
+        ["css=.f-row:nth-child(6) > input", "css:finder"],
+        ["xpath=//input[@name='contact']", "xpath:attributes"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "95c00482-00e2-4bee-ba33-d737080a20af",
+      "comment": "",
+      "command": "type",
+      "target": "name=contact",
+      "targets": [
+        ["name=contact", "name"],
+        ["css=.f-row:nth-child(6) > input", "css:finder"],
+        ["xpath=//input[@name='contact']", "xpath:attributes"],
+        ["xpath=//div[5]/input", "xpath:position"]
+      ],
+      "value": "09123456789"
+    }, {
+      "id": "9c979b86-207f-403c-ac1a-350edcee14a9",
+      "comment": "",
+      "command": "click",
+      "target": "name=add",
+      "targets": [
+        ["name=add", "name"],
+        ["css=.f-row:nth-child(7) > input", "css:finder"],
+        ["xpath=//input[@name='add']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c192a303-937b-4fd7-8ea0-19fff20afc71",
+      "comment": "",
+      "command": "type",
+      "target": "name=add",
+      "targets": [
+        ["name=add", "name"],
+        ["css=.f-row:nth-child(7) > input", "css:finder"],
+        ["xpath=//input[@name='add']", "xpath:attributes"],
+        ["xpath=//div[6]/input", "xpath:position"]
+      ],
+      "value": "2077 cyberpunk street corner san andreas grove street "
+    }, {
+      "id": "7c56113f-6c5d-4f13-8698-7a835bc9c8c9",
+      "comment": "",
+      "command": "click",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=.f-row:nth-child(8) > input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "34e40dd2-ae17-44ff-a76a-e49ac4a52c0b",
+      "comment": "",
+      "command": "type",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=.f-row:nth-child(8) > input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//div[7]/input", "xpath:position"]
+      ],
+      "value": "KyleRaiden017"
+    }, {
+      "id": "ba0a9203-2baf-4023-93c9-430dcc0630a3",
+      "comment": "",
+      "command": "click",
+      "target": "name=pass",
+      "targets": [
+        ["name=pass", "name"],
+        ["css=.f-row:nth-child(9) > input", "css:finder"],
+        ["xpath=//input[@name='pass']", "xpath:attributes"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a2833561-5a7e-40ab-9e2d-679c4c84c06f",
+      "comment": "",
+      "command": "type",
+      "target": "name=pass",
+      "targets": [
+        ["name=pass", "name"],
+        ["css=.f-row:nth-child(9) > input", "css:finder"],
+        ["xpath=//input[@name='pass']", "xpath:attributes"],
+        ["xpath=//div[8]/input", "xpath:position"]
+      ],
+      "value": "KyleKyle"
+    }, {
+      "id": "4f2032a4-a7c5-443d-ab67-034bc7f7feee",
+      "comment": "",
+      "command": "click",
+      "target": "name=repeatpass",
+      "targets": [
+        ["name=repeatpass", "name"],
+        ["css=.f-row:nth-child(10) > input", "css:finder"],
+        ["xpath=//input[@name='repeatpass']", "xpath:attributes"],
+        ["xpath=//div[9]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "76f20197-591c-4670-9360-cc86fc3be878",
+      "comment": "",
+      "command": "type",
+      "target": "name=repeatpass",
+      "targets": [
+        ["name=repeatpass", "name"],
+        ["css=.f-row:nth-child(10) > input", "css:finder"],
+        ["xpath=//input[@name='repeatpass']", "xpath:attributes"],
+        ["xpath=//div[9]/input", "xpath:position"]
+      ],
+      "value": "KyleKyle"
+    }, {
+      "id": "00620c0c-a81d-4179-86ba-20030cf14504",
+      "comment": "",
+      "command": "click",
+      "target": "css=.bwrap > input",
+      "targets": [
+        ["css=.bwrap > input", "css:finder"],
+        ["xpath=//input[@value='register']", "xpath:attributes"],
+        ["xpath=//div[10]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b2d1387f-7e51-4e37-9e34-2d90ba99cdc4",
+      "comment": "",
+      "command": "click",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=.f-row:nth-child(2) > input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e3ede2ef-953f-485d-885a-f1a2366959f4",
+      "comment": "",
+      "command": "type",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=.f-row:nth-child(2) > input", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "KyleRaiden017"
+    }, {
+      "id": "b5faa40c-4c37-4d3d-9850-98a459c695be",
+      "comment": "",
+      "command": "click",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.f-row:nth-child(3) > input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3e83b171-d238-4411-9b30-b6b198350744",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.f-row:nth-child(3) > input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "KyleKyle"
+    }, {
+      "id": "724f50b6-e24b-48a6-b5ef-3e585f1adf4f",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.f-row:nth-child(3) > input", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//div[2]/input", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "dda71417-a677-424f-842c-ead02e412bef",
+      "comment": "",
+      "command": "click",
+      "target": "css=.two-third .button",
+      "targets": [
+        ["css=.two-third .button", "css:finder"],
+        ["xpath=//a[contains(text(),'See the full recipe')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, 'Recipeview?r=Egg%27s+Benedict')])[3]", "xpath:href"],
+        ["xpath=//div/div/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "00fa366c-42e5-497c-9496-4b0bdc351652",
+      "comment": "",
+      "command": "click",
+      "target": "css=.one-third .button",
+      "targets": [
+        ["css=.one-third .button", "css:finder"],
+        ["xpath=(//a[contains(@href, 'Accountview?a=xNbLIkI')])[3]", "xpath:href"],
+        ["xpath=//div[2]/article/div/div/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5daeda5b-59af-4ff6-b912-a489fe7e37fb",
+      "comment": "",
+      "command": "click",
+      "target": "css=.boxed > .light:nth-child(1) span",
+      "targets": [
+        ["css=.boxed > .light:nth-child(1) span", "css:finder"],
+        ["xpath=//div/ul/li/a/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "642bfe98-813b-4037-86fe-77b5b52f52b6",
+      "comment": "",
+      "command": "mouseDown",
+      "target": "css=.light:nth-child(2) > a",
+      "targets": [
+        ["css=.light:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(@href, 'recipes?cat=Desserts')]", "xpath:href"],
+        ["xpath=//div/ul/li[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "bcc7db71-36c6-43ef-94d3-08515c90c03d",
+      "comment": "",
+      "command": "mouseUp",
+      "target": "css=.icon-themeenergy_cupcake",
+      "targets": [
+        ["css=.icon-themeenergy_cupcake", "css:finder"],
+        ["xpath=//div/ul/li[2]/a/i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "571b91e1-9028-42d4-aaf6-92a1d780e26a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.light:nth-child(2) > a",
+      "targets": [
+        ["css=.light:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(@href, 'recipes?cat=Desserts')]", "xpath:href"],
+        ["xpath=//div/ul/li[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4c7adc0b-66dc-41ed-8637-4eb1f08f261a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.light:nth-child(3) > a",
+      "targets": [
+        ["css=.light:nth-child(3) > a", "css:finder"],
+        ["xpath=//a[contains(@href, 'recipes?cat=Dinner')]", "xpath:href"],
+        ["xpath=//div/ul/li[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "86e21018-e03e-4323-bd04-27e9270107c6",
+      "comment": "",
+      "command": "click",
+      "target": "css=.light:nth-child(4) > a",
+      "targets": [
+        ["css=.light:nth-child(4) > a", "css:finder"],
+        ["xpath=//a[contains(@href, 'recipes?cat=Snacks')]", "xpath:href"],
+        ["xpath=//div/ul/li[4]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cc3a3fd5-6979-4b5a-b391-3dbe0419d047",
+      "comment": "",
+      "command": "click",
+      "target": "css=.light:nth-child(5) span",
+      "targets": [
+        ["css=.light:nth-child(5) span", "css:finder"],
+        ["xpath=//li[5]/a/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5f69147d-e65c-4eea-b18a-70371410f086",
+      "comment": "",
+      "command": "click",
+      "target": "css=.light:nth-child(6) span",
+      "targets": [
+        ["css=.light:nth-child(6) span", "css:finder"],
+        ["xpath=//li[6]/a/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1edd783b-600a-4aa6-a0c5-b5a9ff8adf6d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.entry:nth-child(1) span",
+      "targets": [
+        ["css=.entry:nth-child(1) span", "css:finder"],
+        ["xpath=//div/figure/figcaption/a/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "842bc188-2371-4352-8104-b719e73b879b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.one-third:nth-child(2) > figure span",
+      "targets": [
+        ["css=.one-third:nth-child(2) > figure span", "css:finder"],
+        ["xpath=//div[2]/figure/figcaption/a/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b20b95ad-02e5-403a-8228-faf3903e05f0",
+      "comment": "",
+      "command": "click",
+      "target": "css=.entry:nth-child(3) span",
+      "targets": [
+        ["css=.entry:nth-child(3) span", "css:finder"],
+        ["xpath=//div[3]/figure/figcaption/a/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7392cfe6-9ff7-4262-91ba-1f2ea5baa9af",
+      "comment": "",
+      "command": "click",
+      "target": "css=.icon-themeenergy_fork-spoon",
+      "targets": [
+        ["css=.icon-themeenergy_fork-spoon", "css:finder"],
+        ["xpath=//li[3]/a/i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7bd446cc-efd9-492b-abef-3c6f7b4253fb",
+      "comment": "",
+      "command": "click",
+      "target": "css=.medium span",
+      "targets": [
+        ["css=.medium span", "css:finder"],
+        ["xpath=//nav[2]/ul/li[2]/a/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "5918d13b-c95e-4a41-964c-8319b7ca10ae",
+      "comment": "",
+      "command": "click",
+      "target": "css=.tabs li:nth-child(2) > a",
+      "targets": [
+        ["css=.tabs li:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'My recipes')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '#recipes')]", "xpath:href"],
+        ["xpath=//div[2]/nav/ul/li[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9e1a712d-441f-4d72-9aba-53ddaaef2618",
+      "comment": "",
+      "command": "click",
+      "target": "css=.tabs li:nth-child(1) > a",
+      "targets": [
+        ["css=.tabs li:nth-child(1) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'About me')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '#about')]", "xpath:href"],
+        ["xpath=//div[2]/nav/ul/li/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c98c6e8d-ee45-49c3-8400-89cec864545a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.logo > img",
+      "targets": [
+        ["css=.logo > img", "css:finder"],
+        ["xpath=//img[@alt='Meals for Makers logo']", "xpath:img"],
+        ["xpath=//img", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "ccbec49d-b068-4bec-a6a8-04cf6de79bb3",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["96d1155c-1881-41a3-a386-6f13d9b42ea4"]
+  }],
+  "urls": ["https://mealsformakers.xyz/"],
+  "plugins": []
+}
