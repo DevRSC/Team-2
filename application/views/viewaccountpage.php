@@ -10,6 +10,7 @@
 	<title>Meals for Makers</title>
 	
 	<link rel="stylesheet" href="css/style.css" />
+	
 	<link rel="stylesheet" href="css/icons.css" />
 	<link href="http://fonts.googleapis.com/css?family=Raleway:400,300,500,600,700,800" rel="stylesheet">
 	<script src="https://use.fontawesome.com/e808bf9397.js"></script>
@@ -21,6 +22,8 @@
 	  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 	  <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 	<![endif]-->
+	
+
 </head>
 <body>
 	<!--preloader-->
@@ -40,7 +43,7 @@
 					<li><a href="Landing" title="Home"><span>Home</span></a></li>
 					<li><a href="Recipes" title="Recipes"><span>Recipes</span></a>
 					</li>
-					<li><a href="Messaging" title="Messaging"><span>Messaging</span></a>
+					<li><a title="Messaging" class="modal-toggle"><span>Messaging</span></a>
 					
 					<?php if (isset($_SESSION['user'])): ?>
 						<li><a href="Logout" title="Messaging"><span>Welcome, <?php echo $_SESSION['userfirstname']; ?>!<br>Click here to Logout.</span></a>
@@ -86,10 +89,11 @@
 					<!--profile left part-->
 					<div class="my_account one-fourth">
 						<figure>
-							<img src="images/avatar.jpg" alt="" />
+							<img src="<?php echo $userProfile[0]['profilePic'] == "weh" || $userProfile[0]['profilePic'] == "null" || strlen($userProfile[0]['profilePic']) <= 0 ? "images/avatar.jpg" : "/static/images/" . $userProfile[0]['profilePic'] ?>" alt="" />
 						</figure>
 						<div class="container">
-							<h2><?php echo $userProfile[0]['firstname'] . " " . $userProfile[0]['lastname'] ?></h2> 
+							<h2><?php echo $userProfile[0]['firstname'] . " " . $userProfile[0]['lastname'] ?></h2>
+							
 						</div>
 					</div>
 					<!--//profile left part-->
@@ -107,7 +111,10 @@
 							<div class="row">
 								<dl class="basic full-width">
 									<dt>Name</dt>
-									<dd><?php echo $userProfile[0]['firstname'] . " " . $userProfile[0]['lastname'] ?></dd>
+									<dd><?php echo $userProfile[0]['firstname'] . " " . $userProfile[0]['lastname'] ?>
+									
+									</dd>
+									
 									<dt>Birthdate</dt>
 									<dd><?php echo $userProfile[0]['birthdate']?></dd>
 									<dt>Age</dt>
@@ -305,6 +312,25 @@
 					</div>
 				</div>
 				<!--//row-->
+				
+				<div class="row">
+					<div class="comment-respond" id="respond"style="margin-top: -50px;">
+							<h2>Message this user:</h2>
+							<div class="container">
+									<p><b id="displaycommentlabel">Enter your message (500 characters left):</b></p>
+									<div class="f-row">
+										<textarea id="maincommentfield"></textarea>
+									</div>
+									
+									<div class="f-row">
+										<div class="third bwrap">
+											<img id="loadingcomment" src="images/gil.gif" style="float: right; height: 50px;display: none;">
+											<button id="submitcomment" style="float:right">Send message</button>
+										</div>
+									</div>
+							</div>
+						</div>
+				</div>
 			</section>
 			<!--//content-->
 		</div>
@@ -318,39 +344,36 @@
 		<div class="wrap clearfix">
 			<div class="row">
 				<article class="one-half">
-					<h5>About SocialChef Community</h5>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci.</p>
+					<h5>About Meals for Makers</h5>
+					A food blogging community that makes cooking fun and simple - a perfect dish every time! Our community offers curated fail-proof recipes that deliver authentic flavors using modern and innovative techniques. </p>
 				</article>
 				<article class="one-fourth">
 					<h5>Need help?</h5>
-					<p>Contact us via phone or email</p>
-					<p><em>T:</em>  +1 555 555 555<br /><em>E:</em>  <a href="#">socialchef@email.com</a></p>
+					<p>Contact us via email</p>
+					<p><em>E:</em>  <a href="#">mealsformakers@gmail.com</a></p>
 				</article>
 				<article class="one-fourth">
 					<h5>Follow us</h5>
 					<ul class="social">
 						<li><a href="#" title="facebook"><i class="fa fa-fw fa-facebook"></i></a></li>
+						<li><a href="#" title="instagram"><i class="fa fa-fw fa-instagram"></i></a></li>
 						<li><a href="#" title="youtube"><i class="fa  fa-fw fa-youtube"></i></a></li>
-						<li><a href="#" title="rss"><i class="fa  fa-fw fa-rss"></i></a></li>
-						<li><a href="#" title="gplus"><i class="fa fa-fw fa-google-plus"></i></a></li>
 						<li><a href="#" title="linkedin"><i class="fa fa-fw fa-linkedin"></i></a></li>
 						<li><a href="#" title="twitter"><i class="fa fa-fw fa-twitter"></i></a></li>
 						<li><a href="#" title="pinterest"><i class="fa fa-fw fa-pinterest-p"></i></a></li>
-						<li><a href="#" title="vimeo"><i class="fa fa-fw fa-vimeo"></i></a></li>
 					</ul>
 				</article>
 				
 				<div class="bottom">
-					<p class="copy">Copyright 2016 SocialChef. All rights reserved</p>
+					<p class="copy">Copyright 2021 Meals for Makers. All rights reserved. Use of this system constitutes acceptance of our <a href="Privacypolicy" title="PrivacyPolicy">Privacy Policy.</a></p>
 					
 					<nav class="foot-nav">
 						<ul>
 							<li><a href="Landing" title="Home">Home</a></li>
-							<li><a href="recipes.html" title="Recipes">Recipes</a></li>
-							<li><a href="Messaging.html" title="Messaging" target="_blank">Messaging</a></li>
-							<li><a href="contact.html" title="Contact">Contact</a></li>    
-							<li><a href="find_recipe.html" title="Search for recipes">Search for recipes</a></li>
-							<li><a href="login.html" title="Login">Login</a></li>	<li><a href="register.html" title="Register">Register</a></li>													
+							<li><a href="Recipes" title="Recipes">Recipes</a></li>
+							<li><a href="Messaging" title="Messaging" target="_blank">Messaging</a></li>  
+							<li><a href="Searchrecipes" title="Search for recipes">Search for recipes</a></li>
+																			
 						</ul>
 					</nav>
 				</div>
@@ -358,11 +381,75 @@
 		</div>
 	</footer>
 	<!--//footer-->
+<link rel="stylesheet" href="css/modalstyle.css" />
+	<div class="modal">
+    <div class="modal-overlay modal-toggle"></div>
+    <div class="modal-wrapper modal-transition">
+      <div class="modal-header">
+        <button class="modal-close modal-toggle"><i class="fa fa-times fa-lg"></i></button>
+        <h2 class="modal-heading">Messaging</h2>
+      </div>
+      
+      <div class="modal-body">
+        <div class="modal-content">
+          <iframe src="Messaging" id="msgiframe" title="Messaging" style="width: 100%;height: 600px;"></iframe>
+          <!--<button class="modal-toggle">Update</button>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/jquery-3.1.0.min.js"></script>
+  <script>
+  $('.modal-toggle').on('click', function(e) {
+	  e.preventDefault();
+	  $('.modal').toggleClass('is-visible');
+	  document.getElementById("msgiframe").contentDocument.location.reload(true);
+	});
+	</script>
 	
-	<script src="js/jquery-3.1.0.min.js"></script>
 	<script src="js/jquery.uniform.min.js"></script>
 	<script src="js/jquery.slicknav.min.js"></script>
 	<script src="js/scripts.js"></script>
+	
+	<script>
+	
+	var mRecIndex = "<?php echo $_GET['a']; ?>";
+	$(document).ready(function(){
+		$('body').on('keyup paste', 'textarea', function () {
+				var maxchars = 500;
+				$(this).val($(this).val().substring(0, maxchars));
+				var tlength = $(this).val().length;
+				remain = maxchars - parseInt(tlength);
+				$('#displaycommentlabel').html("Enter your message (" + remain + " characters left):");
+			});
+			$("#submitcomment").click(function(){
+				var comm = $("#maincommentfield").val();
+				if (comm.length > 0 && comm.length <= 500) {
+					$.ajax({
+						type: "POST",
+						url: "<?php echo site_url('Sendmsg'); ?>",
+						data:'comm=' + comm + '&ind=' + mRecIndex,
+						beforeSend: function(){
+							$("#loadingcomment").show();
+						},
+						success: function(data){
+							$("#loadingcomment").hide();
+							$("#maincommentfield").val("");
+							$('.modal').toggleClass('is-visible');
+							document.getElementById("msgiframe").contentDocument.location.reload(true);
+							
+							
+						}
+					});
+				} else {
+					alert('Enter a proper comment!');
+				}
+				
+			});
+			
+		});
+	</script>
+	
 </body>
 </html>
 

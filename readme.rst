@@ -1,4 +1,91 @@
 ###################
+
+CHANGELOG - Gil Alvarez Developer Branch (concatenated with Ramil Cobilla developer Branch)
+###################
+
+**Visit the live site! https://mealsformakers.xyz/**
+**Download the Android App! https://mealsformakers.xyz/mealsformakers.apk**
+
+*******************
+v1.1 code change, codename: "PHP > JS" (week 10, 11, 12)
+*******************
+
+* Fixed major recipe upload and recipe edit flaws
+* Added recipe removal functionality
+* Updated database schema due to function changes
+* Fixed messaging page (with reply functionality)
+* fixed some bugged CRUD functions
+* fixed user input validation for all possible inputs (user registration, recipe creation, etc.)
+* added user email OTP functionality in registration
+* added password reset capability
+
+* BUGS:
+	* Messaging functions are not complete
+	* No edit function and deactivation for account profile yet
+	* Some layout issues
+	* Weird JS error when sending a message on messages popup in Account view
+
+
+
+*******************
+v1.0.2 code change, codename: "Hapi new year ebriwan" (week 5, 6, 7)
+*******************
+
+* Fixed edit functionalities
+* Added recipe removal functionality
+* Updated database schema due to function changes
+* Fixed messaging page (with reply functionality)
+* fixed some bugged CRUD functions
+* fixed user input validation for all possible inputs (user registration, recipe creation, etc.)
+* added user email OTP functionality in registration
+* added password reset capability
+
+* BUGS:
+	* Messaging functions are not complete
+	* No edit function and deactivation for account profile yet
+	* Some layout issues
+	* Weird JS error when sending a message on messages popup in Account view
+
+
+
+*******************
+v1.0.1b code change, codename: "Minimalisticx" (week 5)
+*******************
+
+* Added edit function for own recipes
+* Fixed messaging page (can only read messages at the moment)
+* fixed some bugged CRUD functions
+* fixed registration user data validation
+
+* BUGS:
+	* Messaging functions are not complete
+	* No edit function for account profile yet
+	* Getings controller would sometimes return 500 error code
+
+
+*******************
+v1.0.1a code change, codename: "Gil Puyat" (week 3)
+*******************
+
+* Connection of backend CRUD functions to frontend
+	* jQuery realtime update of data
+* Fix for getSuggestedRecipes() function
+	* break only 2 loops
+* add additional CRUD functions
+	* getAllIngredientsLiterally()
+	* getDashboardCounts()
+	* getRandomRecipe()
+	* getAllRecipes_summary_currentUser()
+	* getAllCategories()
+* added category table and category column to recipes
+
+* BUGS:
+	* Messaging not working yet
+	* No edit functions yet
+	* Getings controller would sometimes return 500 error code
+
+
+=======
 CHANGELOG - Master Branch
 ###################
 
@@ -42,6 +129,7 @@ v1.0.1a code change, codename: "Gil Puyat" (week 3)
 	* Getings controller would sometimes return 500 error code
 
 
+
 *******************
 v1 code change, codename: "Shopee 11.11" (week 1, task 4)
 *******************
@@ -57,4 +145,6 @@ v1 code change, codename: "Shopee 11.11" (week 1, task 4)
 	* Functions for upvotes CRUD
 	* Function for messages CRUD
 	* Functions for recipe suggestion (subject to optimizatio)
+
 * Database Model Changes
+

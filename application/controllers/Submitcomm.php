@@ -20,15 +20,22 @@ class Submitcomm extends CI_Controller {
 		//foreach($this->input->post() as $key => $val) {
 		// 	echo "<p>Key: ".$key. " Value:" . $val . "</p>\n";
 		// }
-		sleep(1.5);//lol
-		$comm = $this->input->get_post('comm', TRUE);
-		$indexx = $this->input->get_post('ind', TRUE);
-
-		$a = $this->Crudcentral->insertComment($indexx, "-1", $comm);
-		if (intval($a['code']) == 1) {
-			echo $a['geniusdebug'];
+		sleep(1);//lol
+		if (empty($_SESSION['userid'])) { 
+			//redirect('Login'); 
 		} else {
+			$comm = $this->input->get_post('comm', TRUE);
+			$indexx = $this->input->get_post('ind', TRUE);
+
+			if (strlen($comm) >= 5 && strlen($comm) <=500 && !ctype_space($comm)) {
+				$a = $this->Crudcentral->insertComment($indexx, "-1", $comm);
+			}
 			
+			if (intval($a['code']) == 1) {
+				echo $a['geniusdebug'];
+			} else {
+				
+			}
 		}
 		
 	}

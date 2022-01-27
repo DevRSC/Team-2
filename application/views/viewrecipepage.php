@@ -40,7 +40,7 @@
 					<li><a href="landing" title="Home"><span>Home</span></a></li>
 					<li><a href="Recipes" title="Recipes"><span>Recipes</span></a>
 					</li>
-					<li><a href="Messaging" title="Messaging"><span>Messaging</span></a>
+					<li><a href="Messaging" title="Messaging" class="modal-toggle"><span>Messaging</span></a>
 					
 					<?php if (isset($_SESSION['user'])): ?>
 						<li><a href="Logout" title="Messaging"><span>Welcome, <?php echo $_SESSION['userfirstname']; ?>!<br>Click here to Logout.</span></a>
@@ -87,16 +87,17 @@
 				</header>
 				
 				<!--content-->
-				<section class="content three-fourth">
+				<section class="content two-fourth">
 					<?php if ($_SESSION['userid'] == $currentRecipe[0]['userIndex']): ?>
 						<a href="Editrecipe?r=<?php echo $currentRecipe[0]['recipeIndex']; ?>" class="button">Edit this recipe</a>
+						<a href="Removerecipe?r=<?php echo $currentRecipe[0]['recipeIndex']; ?>" id="remrecipe" data-ask="Are you sure you remove this recipe?" class="button">Remove this recipe</a>
 					<?php endif ?>
 					<!--recipe-->
 						<div class="recipe">
 							<div class="row">
 								<!--two-third-->
 								<article class="two-third">
-									<div class="image"><a href="#"><img src="<?php echo site_url("static/images") . "/" . $currentRecipe[0]['recipeImg']; ?>" alt="" /></a></div>
+									<div class="image"><a href="#"><img  style="max-width: 100%; max-height: 100%; width: 100%;" src="<?php echo site_url("static/images") . "/" . $currentRecipe[0]['recipeImg']; ?>" alt="" /></a></div>
 									<div class="intro"><p><?php echo explode("|||", $currentRecipe[0]['recipeDesc'])[3]; ?></p></div>
 									<h3>Instructions:</h3>
 									<div class="instructions">
@@ -196,7 +197,7 @@
 						<div class="comment-respond" id="respond">
 							<h2>Leave a comment</h2>
 							<div class="container">
-									<p><b>Enter your comment:</b></p>
+									<p><b id="displaycommentlabel">Enter your comment (500 characters left):</b></p>
 									<div class="f-row">
 										<textarea id="maincommentfield"></textarea>
 									</div>
@@ -238,39 +239,36 @@
 		<div class="wrap clearfix">
 			<div class="row">
 				<article class="one-half">
-					<h5>About SocialChef Community</h5>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci.</p>
+					<h5>About Meals for Makers</h5>
+					A food blogging community that makes cooking fun and simple - a perfect dish every time! Our community offers curated fail-proof recipes that deliver authentic flavors using modern and innovative techniques. </p>
 				</article>
 				<article class="one-fourth">
 					<h5>Need help?</h5>
-					<p>Contact us via phone or email</p>
-					<p><em>T:</em>  +1 555 555 555<br /><em>E:</em>  <a href="#">socialchef@email.com</a></p>
+					<p>Contact us via email</p>
+					<p><em>E:</em>  <a href="#">mealsformakers@gmail.com</a></p>
 				</article>
 				<article class="one-fourth">
 					<h5>Follow us</h5>
 					<ul class="social">
 						<li><a href="#" title="facebook"><i class="fa fa-fw fa-facebook"></i></a></li>
+						<li><a href="#" title="instagram"><i class="fa fa-fw fa-instagram"></i></a></li>
 						<li><a href="#" title="youtube"><i class="fa  fa-fw fa-youtube"></i></a></li>
-						<li><a href="#" title="rss"><i class="fa  fa-fw fa-rss"></i></a></li>
-						<li><a href="#" title="gplus"><i class="fa fa-fw fa-google-plus"></i></a></li>
 						<li><a href="#" title="linkedin"><i class="fa fa-fw fa-linkedin"></i></a></li>
 						<li><a href="#" title="twitter"><i class="fa fa-fw fa-twitter"></i></a></li>
 						<li><a href="#" title="pinterest"><i class="fa fa-fw fa-pinterest-p"></i></a></li>
-						<li><a href="#" title="vimeo"><i class="fa fa-fw fa-vimeo"></i></a></li>
 					</ul>
 				</article>
 				
 				<div class="bottom">
-					<p class="copy">Copyright 2016 SocialChef. All rights reserved</p>
+					<p class="copy">Copyright 2021 Meals for Makers. All rights reserved. Use of this system constitutes acceptance of our <a href="Privacypolicy" title="PrivacyPolicy">Privacy Policy.</a></p>
 					
 					<nav class="foot-nav">
 						<ul>
 							<li><a href="Landing" title="Home">Home</a></li>
-							<li><a href="recipes.html" title="Recipes">Recipes</a></li>
-							<li><a href="Messaging.html" title="Messaging" target="_blank">Messaging</a></li>
-							<li><a href="contact.html" title="Contact">Contact</a></li>    
-							<li><a href="find_recipe.html" title="Search for recipes">Search for recipes</a></li>
-							<li><a href="login.html" title="Login">Login</a></li>	<li><a href="register.html" title="Register">Register</a></li>													
+							<li><a href="Recipes" title="Recipes">Recipes</a></li>
+							<li><a href="Messaging" title="Messaging" target="_blank">Messaging</a></li>  
+							<li><a href="Searchrecipes" title="Search for recipes">Search for recipes</a></li>
+										
 						</ul>
 					</nav>
 				</div>
@@ -279,7 +277,32 @@
 	</footer>
 	<!--//footer-->
 	
-	<script src="js/jquery-3.1.0.min.js"></script>
+		<link rel="stylesheet" href="css/modalstyle.css" />
+	<div class="modal">
+    <div class="modal-overlay modal-toggle"></div>
+    <div class="modal-wrapper modal-transition">
+      <div class="modal-header">
+        <button class="modal-close modal-toggle"><i class="fa fa-times fa-lg"></i></button>
+        <h2 class="modal-heading">Messaging</h2>
+      </div>
+      
+      <div class="modal-body">
+        <div class="modal-content">
+          <iframe src="Messaging" id="msgiframe" title="Messaging" style="width: 100%;height: 600px;"></iframe>
+          <!--<button class="modal-toggle">Update</button>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/jquery-3.1.0.min.js"></script>
+  <script>
+  $('.modal-toggle').on('click', function(e) {
+	  e.preventDefault();
+	  $('.modal').toggleClass('is-visible');
+	  document.getElementById("msgiframe").contentDocument.location.reload(true);
+	});
+	</script>
+	
 	<script src="js/jquery.uniform.min.js"></script>
 	<script src="js/jquery.slicknav.min.js"></script>
 	<script src="js/scripts.js"></script>
@@ -323,6 +346,13 @@
 					});
 		}
 		$(document).ready(function(){
+			$('body').on('keyup paste', 'textarea', function () {
+				var maxchars = 500;
+				$(this).val($(this).val().substring(0, maxchars));
+				var tlength = $(this).val().length;
+				remain = maxchars - parseInt(tlength);
+				$('#displaycommentlabel').html("Enter your comment (" + remain + " characters left):");
+			});
 			refreshCommentList();
 			$("#submitcomment").click(function(){
 				var comm = $("#maincommentfield").val();
@@ -346,6 +376,13 @@
 				}
 				
 			});
+			$(document).on('click', ':not(form)[data-ask]', function(e){
+				if(!confirm($(this).data('ask'))){
+					e.stopImmediatePropagation();
+					e.preventDefault();
+				}
+			});
+			
 		});
 	</script>
 </body>

@@ -2,11 +2,13 @@
     //Gil says: "Thou shall not copy others' code as it is their intellectual property."
     //Gil says: "Thou shall not post others' code to Twitter and claim it as your own, as you will induce a lifetime curse of you being an approval seeker and a fake showoff."
     $conn;
+	
+	
     class Crudcentral extends CI_Model {
         public function __construct() {
             $this->load->library('session');
             global $conn;
-            $conn = mysqli_connect("localhost", "root", "", "mealsformakers");
+            $conn = mysqli_connect("localhost", "admin", "", "mealsformakers");
         }
 
         //for password hashing
@@ -42,6 +44,15 @@
             }
         }
 
+		//generation of random numbers
+        public function genrNum($length = 6) {
+            $characters = '0123456789';
+            $rand = '';
+            for ($i = 0; $i < $length; $i++) {
+                $rand .= $characters[rand(0, (strlen($characters)) - 1)];
+            }
+            return $rand;
+        }
         //this function is for testing purposes only
         public function getUsers() {
             global $conn;
@@ -135,6 +146,39 @@
                 
             }
         }
+		
+		//function to update current profile (name and birthdate only)
+        public function updateUserBasic($lastname, $firstname, $birthdate, $age, $profilePic) {
+            global $conn;
+            $return_arr = array();
+            if (empty($_SESSION['userid'])) {
+                //check if a current user is logged in.
+                $return_arr = array(
+                    'code'=>"0",
+                    'msg'=>"No user is logged in!"
+                );
+            } else {
+                $userIndex = $_SESSION['userid'];
+                $sql = "UPDATE `usertable` SET `lastname`= ? ,`firstname`= ? ,`age`= ? ,`birthdate`= ? ,`profilePic`= ?  WHERE userIndex = ?";
+                $stmt = $conn->prepare($sql);
+                $finalAge = intval($age);
+                $finalBdate = $this->convDate($birthdate, 0);
+                $stmt->bind_param('ssssss', $lastname, $firstname, $finalAge, $finalBdate, $profilePic, $userIndex);
+                if ($stmt->execute()) {
+                    $return_arr = array(
+                        'code'=>"1",
+						'mimg'=> $profilePic,
+                        'msg'=>"User profile updated!"
+                    );
+                } else {
+                    $return_arr = array(
+                        'code'=>"0",
+                        'msg'=>"Server error! Failed updating profile!"
+                    );
+                }
+                
+            }
+        }
         public function getLatestUser() {
             global $conn;
             $return_arr = array();
@@ -172,7 +216,8 @@
                 if (!empty($_SESSION['userid'])) {
                     $userIndex = $_SESSION['userid'];
                 }
-                $sql = "SELECT *, (SELECT COUNT(recipeIndex) FROM recipetable WHERE recipetable.userIndex = usertable.userIndex) AS recipecount, (SELECT COUNT(commIndex) FROM commtable WHERE commtable.userIndex = usertable.userIndex) AS commcount, (SELECT ingtable.ingName FROM ingtable WHERE ingtable.ingIndex = (SELECT recipereftable.ingIndex FROM recipereftable WHERE recipereftable.recipeIndex = (SELECT recipetable.recipeIndex FROM recipetable WHERE recipetable.userIndex = usertable.userIndex) GROUP BY recipereftable.ingIndex ORDER BY (COUNT(recipereftable.ingIndex)) DESC LIMIT 1)) AS freqing FROM usertable WHERE userIndex = ?";
+				
+                $sql = "SELECT *, (SELECT COUNT(recipeIndex) FROM recipetable WHERE recipetable.userIndex = usertable.userIndex) AS recipecount, (SELECT COUNT(commIndex) FROM commtable WHERE commtable.userIndex = usertable.userIndex) AS commcount, (SELECT ingtable.ingName FROM ingtable WHERE ingtable.ingIndex = (SELECT recipereftable.ingIndex FROM recipereftable WHERE recipereftable.recipeIndex = (SELECT recipetable.recipeIndex FROM recipetable WHERE recipetable.userIndex = usertable.userIndex LIMIT 1) GROUP BY recipereftable.ingIndex ORDER BY (COUNT(recipereftable.ingIndex)) DESC LIMIT 1)) AS freqing FROM usertable WHERE userIndex = ?";
                 //thats a large query boi
                 $stmt = $conn->prepare($sql);
                 if ($user == "null") {
@@ -195,6 +240,38 @@
                 }
             }
             return $return_arr;
+        }
+		//get user by username / email
+		public function getUserByNotIndex($user) {
+            global $conn;
+            $return_arr = array();
+                $sql = "SELECT * FROM usertable WHERE username = ? OR email = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param('ss', $user, $user);
+                $stmt->execute();
+                $res = $stmt->get_result();
+                if ($res->num_rows>0) {
+                    while ($a = $res->fetch_assoc()) {
+                        $return_arr[] = $a;
+                    }
+                } else {
+                    $return_arr = array(
+                        'code'=>"0",
+                        'msg'=>"User not found!"
+                    );
+                }
+            
+            return $return_arr;
+        }
+		
+		//update user password
+		public function updateUserPass($user, $pass) {
+            global $conn;
+			$mainpass = $this->shaenc($pass);
+                $sql = "UPDATE usertable SET pword = ? WHERE userIndex = ?";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param('ss', $mainpass, $user);
+                $stmt->execute();
         }
 
         //login user function
@@ -229,6 +306,26 @@
 
             return $return_arr;
         }
+		
+		 //get user index MOBAPI
+        public function getUserIndex($username, $pword) {
+            global $conn;
+            $return_arr = "nuull";
+            $asin = $this->shaenc($pword);
+            $sql = "SELECT * FROM usertable WHERE BINARY username = ? AND pword = ? LIMIT 1";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('ss', $username, $asin);
+            $stmt->execute();
+            $res = $stmt->get_result();
+            if ($res->num_rows>0) {
+                while ($a = $res->fetch_assoc()) {
+                    $return_arr = $a['userIndex'];
+                }
+            }
+
+
+            return $return_arr;
+        }
 
 
         //function for inserting a new recipe and updating a recipe
@@ -244,12 +341,12 @@
                     'msg'=>"No user is logged in!"
                 );
             } else {
-                $sql = "SELECT * FROM recipetable WHERE recipeTitle = ?";
+                $sql = "SELECT * FROM recipetable WHERE recipeTitle = ? AND isvisible = 1";
                 $stmt = $conn->prepare($sql);
                 $stmt->bind_param('s', $title);
                 $stmt->execute();
                 $res = $stmt->get_result();
-                if ($res->num_rows>0) {
+                if ($res->num_rows>0 && $recipeIndex == "null") {
                     $return_arr = array(
                         'code'=>"0",
                         'msg'=>"Recipe title already exists!"
@@ -390,6 +487,7 @@
         //get all recipe summary list
         public function getAllRecipes_summary($cat = "all", $limitation = -1) {
             global $conn;
+			
             $return_arr = array();
 
                 $sql = "SELECT *, (SELECT CONCAT(usertable.firstname, ' ', usertable.lastname) FROM usertable WHERE usertable.userIndex = recipetable.userIndex) AS recipeauthor, (SELECT COUNT(commIndex) FROM commtable WHERE commtable.recipeIndex = recipetable.recipeIndex) AS commcount FROM recipetable WHERE isvisible = 1 ORDER BY modifyDate DESC";
@@ -542,6 +640,32 @@
             return $return_arr;
         }
 
+		
+		//getting latest recipe
+        public function getLatestRecipe() {
+            global $conn;
+            $return_arr = array();
+                $sql = "SELECT *, (SELECT CONCAT(usertable.firstname, ' ', usertable.lastname) FROM usertable WHERE usertable.userIndex = recipetable.userIndex) AS recipeauthor FROM recipetable WHERE isvisible = 1 ORDER BY publishDate DESC LIMIT 1";
+                $stmt = $conn->prepare($sql);
+               // $stmt->bind_param('s', $recipeName);
+                $stmt->execute();
+                $res = $stmt->get_result();
+                if ($res->num_rows>0) {
+                    while ($a = $res->fetch_assoc()) {
+                        $return_arr[] = $a;
+                    }
+                } else {
+                    $return_arr = array(
+                        'code'=>"0",
+                        'msg'=>"Recipe not found!"
+                    );
+                }
+            
+            return $return_arr;
+        }
+
+		
+		
         //getting random recipe
         public function getRandomRecipe() {
             global $conn;
@@ -982,6 +1106,22 @@
                 );
             } else {
                 $userIndex = $_SESSION['userid'];
+				
+				//check  first if this is a fresh message
+                $sql = "SELECT * FROM `msgtable` WHERE userIndexFrom = ? AND userIndexTo = ? ORDER BY msgDate DESC LIMIT 1";
+                $stmt = $conn->prepare($sql);
+                $stmt->bind_param('ss', $userIndexTo, $userIndex);
+                $stmt->execute();
+                $res = $stmt->get_result();
+                if ($res->num_rows<=0) {
+                    $randMsgIndex1 = $this->genr();
+					$sql1 = "INSERT INTO `msgtable`(`msgIndex`, `userIndexFrom`, `userIndexTo`, `msgDate`, `msg`) VALUES (?, ?, ?, '1999-01-01 00:00:00', ?)";
+					$stmt = $conn->prepare($sql1);
+					$msg1 = "Hey!";
+					$stmt->bind_param('ssss', $randMsgIndex1, $userIndexTo, $userIndex, $msg1);
+					$stmt->execute();
+                } 
+				
                 $randMsgIndex = $this->genr();
                 $sql = "INSERT INTO `msgtable`(`msgIndex`, `userIndexFrom`, `userIndexTo`, `msgDate`, `msg`) VALUES (?, ?, ?, now(), ?)";
                 $stmt = $conn->prepare($sql);
@@ -1019,13 +1159,13 @@
                 if (intval($mode) == 1) {
                     $sql = "SELECT *, (SELECT CONCAT(usertable.firstname, ' ', usertable.lastname) FROM usertable WHERE usertable.userIndex = msgtable.userIndexTo ) AS mainname FROM `msgtable` WHERE (userIndexFrom = ? AND userIndexTo = ?) OR (userIndexTo = ? AND userIndexFrom = ?)  ORDER BY msgDate DESC LIMIT 1";
                 } else if (intval($mode) == 2) {
-                    $sql = "SELECT *, (SELECT CONCAT(usertable.firstname, ' ', usertable.lastname) FROM usertable WHERE usertable.userIndex = msgtable.userIndexTo ) AS mainname FROM `msgtable` WHERE userIndexFrom = ? GROUP BY userIndexTo ORDER BY msgDate";
+                    $sql = "SELECT *, (SELECT CONCAT(usertable.firstname, ' ', usertable.lastname) FROM usertable WHERE usertable.userIndex = msgtable.userIndexTo ) AS mainname, (SELECT b.msg FROM msgtable b WHERE (b.userIndexFrom = ? AND b.userIndexTo = msgtable.userIndexTo) OR (b.userIndexFrom = msgtable.userIndexTo AND b.userIndexTo = ?) ORDER BY msgDate DESC LIMIT 1) AS lastmsg, (SELECT b.msgIndex FROM msgtable b WHERE (b.userIndexFrom = ? AND b.userIndexTo = msgtable.userIndexTo) OR (b.userIndexFrom = msgtable.userIndexTo AND b.userIndexTo = ?) ORDER BY msgDate DESC LIMIT 1) AS lastmsgindex, (SELECT b.msgDate FROM msgtable b WHERE (b.userIndexFrom = ? AND b.userIndexTo = msgtable.userIndexTo) OR (b.userIndexFrom = msgtable.userIndexTo AND b.userIndexTo = ?) ORDER BY msgDate DESC LIMIT 1) AS lastmsgdate FROM `msgtable` WHERE userIndexFrom = ? OR userIndexTo = ? GROUP BY userIndexTo ORDER BY lastmsgdate DESC";
                 } else {
-                    $sql = "SELECT *, (SELECT CONCAT(usertable.firstname, ' ', usertable.lastname) FROM usertable WHERE usertable.userIndex = msgtable.userIndexTo ) AS mainname FROM `msgtable` WHERE (userIndexFrom = ? AND userIndexTo = ?) OR (userIndexTo = ? AND userIndexFrom = ?) ORDER BY msgDate";
+                    $sql = "SELECT *, (SELECT CONCAT(usertable.firstname, ' ', usertable.lastname) FROM usertable WHERE usertable.userIndex = msgtable.userIndexTo ) AS mainname FROM `msgtable` WHERE (userIndexFrom = ? AND userIndexTo = ?) OR (userIndexTo = ? AND userIndexFrom = ?) ORDER BY msgDate LIMIT 200";
                 }
                 $stmt = $conn->prepare($sql);
                 if ((intval($mode) == 2)) {
-                    $stmt->bind_param('s', $userIndex);
+                    $stmt->bind_param('ssssssss', $userIndex, $userIndex, $userIndex, $userIndex, $userIndex, $userIndex, $userIndex, $userIndex);
                 } else {
                     $stmt->bind_param('ssss', $userIndex, $userIndexTo, $userIndex, $userIndexTo);
                 }
@@ -1083,6 +1223,81 @@
             
             return $return_arr;
         }
+		
+		public function sendMail($subjectt, $messagee, $too) {
+			require('somemail/class.phpmailer.php');
+			$mail = new PHPMailer();
+			$mail->IsSMTP();
+			$mail->Host = "smtp.gmail.com"; 
+			$mail->SMTPSecure = 'tls';
+			$mail->SMTPAuth = true;
+			$mail->SMTPOptions = array(
+				'ssl' => array(
+					'verify_peer' => false,
+					'verify_peer_name' => false,
+					'allow_self_signed' => true
+				)
+			);
+			$mail->Username = "mealsformakersmail@gmail.com";
+			$mail->Password = "m34l\$f0rm4k3r\$";
+			$mail->From = "mealsformakersmail@gmail.com";
+			$mail->FromName = "Meals for Makers Team";
+			$mail->setFrom("mealsformakersmail@gmail.com", "Meals for Makers Team");
+			
+			
+			$mail->AddAddress($too, $too);
+			
+			$mail->WordWrap = 50;
+			$mail->IsHTML(true);
+			$mail->AddEmbeddedImage("images/ico/logo2.png", "log");
+			$mail->Subject = $subjectt;
+			
+			$message = "<center><img style=\"height: 200px;\" src=\"cid:log\" />" . $messagee . "</center>";
+
+			$mail->Body    = $message;
+			$mail->AltBody = $message;
+
+			if(!$mail->Send())
+			{
+			   echo "Message could not be sent. ";
+			   echo "Mailer Error: " . $mail->ErrorInfo;
+			   die();
+			}
+		}
+		
+		//Mobile API function
+		
+		public function getLatestComments($userIndex) {
+			global $conn;
+            $return_arr = array();
+            $sql = "SELECT *, (SELECT firstname FROM usertable c WHERE c.userIndex = commtable.userIndex) AS commenter, (SELECT recipeTitle FROM recipetable d WHERE d.recipeIndex = commtable.recipeIndex) AS recipename FROM commtable WHERE recipeIndex = (SELECT b.recipeIndex FROM recipetable b WHERE b.userIndex = ? LIMIT 1) ORDER BY commtable.dte DESC LIMIT 1";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('s', $userIndex);
+            $stmt->execute();
+            $res = $stmt->get_result();
+            if ($res->num_rows>0) {
+                while ($a = $res->fetch_assoc()) {
+                    $return_arr[] = $a;
+                }
+            }
+            return $return_arr;
+		}
+		
+		public function getLatestMessageIndex($userIndex) {
+			global $conn;
+            $return_arr = array();
+            $sql = "SELECT msgIndex FROM msgtable WHERE userIndexTo = ? ORDER BY msgDate LIMIT 1";
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param('s', $userIndex);
+            $stmt->execute();
+            $res = $stmt->get_result();
+            if ($res->num_rows>0) {
+                while ($a = $res->fetch_assoc()) {
+                    $return_arr[] = $a;
+                }
+            }
+            return $return_arr;
+		}
 
     }
 ?>

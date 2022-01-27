@@ -113,43 +113,40 @@
 	
 	
 	<!--footer-->
-	<footer class="foot" role="contentinfo">
+<footer class="foot" role="contentinfo">
 		<div class="wrap clearfix">
 			<div class="row">
 				<article class="one-half">
 					<h5>About Meals for Makers</h5>
-					<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci.</p>
+					A food blogging community that makes cooking fun and simple - a perfect dish every time! Our community offers curated fail-proof recipes that deliver authentic flavors using modern and innovative techniques. </p>
 				</article>
 				<article class="one-fourth">
 					<h5>Need help?</h5>
-					<p>Contact us via phone or email</p>
-					<p><em>T:</em>  +1 555 555 555<br /><em>E:</em>  <a href="#">mealsformakers@gmail.com</a></p>
+					<p>Contact us via email</p>
+					<p><em>E:</em>  <a href="#">mealsformakers@gmail.com</a></p>
 				</article>
 				<article class="one-fourth">
 					<h5>Follow us</h5>
 					<ul class="social">
 						<li><a href="#" title="facebook"><i class="fa fa-fw fa-facebook"></i></a></li>
+						<li><a href="#" title="instagram"><i class="fa fa-fw fa-instagram"></i></a></li>
 						<li><a href="#" title="youtube"><i class="fa  fa-fw fa-youtube"></i></a></li>
-						<li><a href="#" title="rss"><i class="fa  fa-fw fa-rss"></i></a></li>
-						<li><a href="#" title="gplus"><i class="fa fa-fw fa-google-plus"></i></a></li>
 						<li><a href="#" title="linkedin"><i class="fa fa-fw fa-linkedin"></i></a></li>
 						<li><a href="#" title="twitter"><i class="fa fa-fw fa-twitter"></i></a></li>
 						<li><a href="#" title="pinterest"><i class="fa fa-fw fa-pinterest-p"></i></a></li>
-						<li><a href="#" title="vimeo"><i class="fa fa-fw fa-vimeo"></i></a></li>
 					</ul>
 				</article>
 				
 				<div class="bottom">
-					<p class="copy">Copyright 2021 Meals for Makers. All rights reserved.</p>
+					<p class="copy">Copyright 2021 Meals for Makers. All rights reserved. Use of this system constitutes acceptance of our <a href="Privacypolicy" title="PrivacyPolicy">Privacy Policy.</a></p>
 					
 					<nav class="foot-nav">
 						<ul>
 							<li><a href="Landing" title="Home">Home</a></li>
-							<li><a href="recipes.html" title="Recipes">Recipes</a></li>
-							<li><a href="Messaging.html" title="Messaging" target="_blank">Messaging</a></li>
-							<li><a href="contact.html" title="Contact">Contact</a></li>    
-							<li><a href="find_recipe.html" title="Search for recipes">Search for recipes</a></li>
-							<li><a href="login.html" title="Login">Login</a></li>	<li><a href="register.html" title="Register">Register</a></li>													
+							<li><a href="Recipes" title="Recipes">Recipes</a></li>
+							<li><a href="Messaging" title="Messaging" target="_blank">Messaging</a></li>  
+							<li><a href="Searchrecipes" title="Search for recipes">Search for recipes</a></li>
+							<li><a href="Login" title="Login">Login</a></li>	<li><a href="Register" title="Register">Register</a></li>													
 						</ul>
 					</nav>
 				</div>

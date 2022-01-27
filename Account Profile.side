@@ -1,0 +1,141 @@
+{
+  "id": "7dff6585-2716-4c4c-9fb6-d9d57076b192",
+  "version": "2.0",
+  "name": "Account Profile",
+  "url": "http://localhost",
+  "tests": [{
+    "id": "fd61c65a-b181-4add-8949-98445001c3c5",
+    "name": "Test Case 1",
+    "commands": [{
+      "id": "ac969334-b2b2-4fb0-9fb0-e451de45ff54",
+      "comment": "",
+      "command": "open",
+      "target": "/pangsindi/Myaccount",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "973ebdbf-4354-4505-b49f-cd9bc09a6e0d",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1057x1039",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fe713878-5af0-4149-853f-9ad00ca8ab58",
+      "comment": "",
+      "command": "click",
+      "target": "css=.tabs li:nth-child(2) > a",
+      "targets": [
+        ["css=.tabs li:nth-child(2) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'My recipes')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '#recipes')]", "xpath:href"],
+        ["xpath=//div[2]/nav/ul/li[2]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "291036a0-bd1b-4abc-8221-8399bc1741e7",
+      "comment": "",
+      "command": "click",
+      "target": "css=.tabs li:nth-child(1) > a",
+      "targets": [
+        ["css=.tabs li:nth-child(1) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'About me')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '#about')]", "xpath:href"],
+        ["xpath=//div[2]/nav/ul/li/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9f74ad46-f0fa-4ec0-b4d9-26a1b02e91b5",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Home",
+      "targets": [
+        ["linkText=Home", "linkText"],
+        ["css=.breadcrumbs a", "css:finder"],
+        ["xpath=//a[contains(text(),'Home')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, 'Landing')])[4]", "xpath:href"],
+        ["xpath=//main/div/nav/ul/li/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "65753171-be6e-4f40-b0a0-3349e2fc03b8",
+      "comment": "",
+      "command": "click",
+      "target": "css=.one-third .button",
+      "targets": [
+        ["css=.one-third .button", "css:finder"],
+        ["xpath=(//a[contains(@href, 'Accountview?a=Qb2R9Ay')])[3]", "xpath:href"],
+        ["xpath=//div[2]/article/div/div/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a509c0e7-fbb2-45f4-a7c6-c8b46ff41925",
+      "comment": "",
+      "command": "click",
+      "target": "css=dd:nth-child(2)",
+      "targets": [
+        ["css=dd:nth-child(2)", "css:finder"],
+        ["xpath=//div[@id='about']/div/dl/dd", "xpath:idRelative"],
+        ["xpath=//dd", "xpath:position"],
+        ["xpath=//dd[contains(.,'Ramil Cobilla')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e6b39ce9-a9fd-4c4a-90ff-5faa0555584b",
+      "comment": "",
+      "command": "click",
+      "target": "css=#about > .row",
+      "targets": [
+        ["css=#about > .row", "css:finder"],
+        ["xpath=//div[@id='about']/div", "xpath:idRelative"],
+        ["xpath=//div[2]/div/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9ae318db-2ec9-468a-87ce-56f04b8bea86",
+      "comment": "",
+      "command": "click",
+      "target": "css=.icon-themeenergy_chef-hat",
+      "targets": [
+        ["css=.icon-themeenergy_chef-hat", "css:finder"],
+        ["xpath=//li[2]/a/i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dbbc8372-c343-4a2c-a8a9-cc5e26418090",
+      "comment": "",
+      "command": "click",
+      "target": "css=#menu li:nth-child(1) span",
+      "targets": [
+        ["css=#menu li:nth-child(1) span", "css:finder"],
+        ["xpath=//nav[@id='menu']/ul/li/a/span", "xpath:idRelative"],
+        ["xpath=//header/div/nav/ul/li/a/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3ffd5e85-ca25-4409-8e57-ae989d5a541d",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=French Fries",
+      "targets": [
+        ["linkText=French Fries", "linkText"],
+        ["css=.entry:nth-child(3) h2 > a", "css:finder"],
+        ["xpath=//a[contains(text(),'French Fries')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, 'Recipeview?r=French+Fries')])[2]", "xpath:href"],
+        ["xpath=//div[3]/div/h2/a", "xpath:position"],
+        ["xpath=//a[contains(.,'French Fries')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "9e8739ce-c50a-42c8-8835-090fd5b057b4",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["fd61c65a-b181-4add-8949-98445001c3c5"]
+  }],
+  "urls": ["http://localhost/"],
+  "plugins": []
+}

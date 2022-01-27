@@ -22,6 +22,11 @@ class Login extends CI_Controller {
 		// }
 
 		//$data['userdata'] = $this->Crudcentral->getUsers();
+		$this->session->unset_userdata('registerdata_mx');
+		$this->session->unset_userdata('registerdata_mx_otp');
+		$this->session->unset_userdata('forgotpass_userindex');
+		$this->session->unset_userdata('forgotpass_otp');
+				
 		if ($this->input->server('REQUEST_METHOD') == 'POST') {
 			$username = $this->input->get_post('username', TRUE);
 			$password = $this->input->get_post('password', TRUE);
