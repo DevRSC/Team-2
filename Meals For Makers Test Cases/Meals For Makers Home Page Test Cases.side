@@ -1,0 +1,257 @@
+{
+  "id": "a92a8f88-5633-408d-b85b-6d9b45802e25",
+  "version": "2.0",
+  "name": "Meals For Makers (Home Page Test Cases)",
+  "url": "https://mealsformakers.xyz",
+  "tests": [{
+    "id": "45dd29e0-3baa-4fcd-a654-270020b21a7f",
+    "name": "Meals For Makers (Home Page Test Cases 10/12/2021)",
+    "commands": [{
+      "id": "83695b7b-4110-40bd-823b-3a4e31f5e4c1",
+      "comment": "",
+      "command": "open",
+      "target": "/?fbclid=IwAR2-qs7d1u7_0xiZwKP8nsZvJEXp2GkRHIeB132q-UH7XwFQNR5j16QAYmA",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "d2d59cbf-0bee-4a55-9dc5-5b7835cdaa09",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "1552x832",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "185ec5d8-49f4-483e-a27f-1cd5133cc57e",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Search for recipes now!",
+      "targets": [
+        ["linkText=Search for recipes now!", "linkText"],
+        ["css=.f-row > .button", "css:finder"],
+        ["xpath=//a[contains(text(),'Search for recipes now!')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, 'Searchrecipes')])[2]", "xpath:href"],
+        ["xpath=//div[2]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Search for recipes now!')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "7dab0844-6d80-41e8-9bbf-19de1e7a0cdb",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Join our community",
+      "targets": [
+        ["linkText=Join our community", "linkText"],
+        ["css=.white", "css:finder"],
+        ["xpath=//a[contains(text(),'Join our community')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'register')]", "xpath:href"],
+        ["xpath=//article/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Join our community ')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "5931efd7-082c-47b4-b86f-33716d9d1032",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=here",
+      "targets": [
+        ["linkText=here", "linkText"],
+        ["css=p:nth-child(5) > a", "css:finder"],
+        ["xpath=//a[contains(text(),'here')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, 'Login')])[3]", "xpath:href"],
+        ["xpath=//p[3]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'here')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "3e59c436-9821-414a-a619-5d926ff274bf",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Join us!",
+      "targets": [
+        ["linkText=Join us!", "linkText"],
+        ["css=.cta > .button", "css:finder"],
+        ["xpath=//a[contains(text(),'Join us!')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, 'register')])[2]", "xpath:href"],
+        ["xpath=//div[5]/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Join us!')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ed5a2239-acbc-4721-a692-2b4c75b826b2",
+      "comment": "",
+      "command": "runScript",
+      "target": "window.scrollTo(0,560)",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "bd0e4ea3-387d-4dd9-a557-b055c8462a57",
+      "comment": "",
+      "command": "click",
+      "target": "css=.one-third > .entry span",
+      "targets": [
+        ["css=.one-third > .entry span", "css:finder"],
+        ["xpath=//div[2]/article/figure/figcaption/a/span", "xpath:position"],
+        ["xpath=//span[contains(.,'View member')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "350935a1-39c0-41b9-a6e2-59d9cc7c5882",
+      "comment": "",
+      "command": "click",
+      "target": "css=.one-third .button",
+      "targets": [
+        ["css=.one-third .button", "css:finder"],
+        ["xpath=(//a[contains(@href, 'Accountview?a=lBSNNBD')])[3]", "xpath:href"],
+        ["xpath=//div[2]/article/div/div/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "fe8bd8ab-64fb-41eb-ac6a-7ec4a111e3fc",
+      "comment": "",
+      "command": "click",
+      "target": "css=.two-third .button",
+      "targets": [
+        ["css=.two-third .button", "css:finder"],
+        ["xpath=//a[contains(text(),'See the full recipe')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, 'Recipeview?r=Bacon+and+Eggs')])[3]", "xpath:href"],
+        ["xpath=//article/div/div/div/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "05d8aa6b-6c71-4356-8280-00cd4b0e2f9b",
+      "comment": "",
+      "command": "click",
+      "target": "css=.icon-themeenergy_pasta",
+      "targets": [
+        ["css=.icon-themeenergy_pasta", "css:finder"],
+        ["xpath=//div/ul/li/a/i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3ffe8593-50ec-4e72-98ea-156036e5439e",
+      "comment": "",
+      "command": "click",
+      "target": "css=.icon-themeenergy_cupcake",
+      "targets": [
+        ["css=.icon-themeenergy_cupcake", "css:finder"],
+        ["xpath=//li[2]/a/i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4dbfe42d-9839-4044-9ce7-78608a4529f4",
+      "comment": "",
+      "command": "click",
+      "target": "css=.icon-themeenergy_soup2",
+      "targets": [
+        ["css=.icon-themeenergy_soup2", "css:finder"],
+        ["xpath=//li[3]/a/i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f6b503cc-cf00-4904-bccd-b7c4898ff6b3",
+      "comment": "",
+      "command": "click",
+      "target": "css=.icon-themeenergy_fried-potatoes",
+      "targets": [
+        ["css=.icon-themeenergy_fried-potatoes", "css:finder"],
+        ["xpath=//li[4]/a/i", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2d38d903-13dc-4f93-802f-b083d1d7db2c",
+      "comment": "",
+      "command": "click",
+      "target": "css=.light:nth-child(5) span",
+      "targets": [
+        ["css=.light:nth-child(5) span", "css:finder"],
+        ["xpath=//li[5]/a/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "0abfd65b-398b-4a45-b3ea-25a362e23e13",
+      "comment": "",
+      "command": "click",
+      "target": "css=.light:nth-child(6) > a",
+      "targets": [
+        ["css=.light:nth-child(6) > a", "css:finder"],
+        ["xpath=//a[contains(@href, 'recipes?cat=Miscellaneous')]", "xpath:href"],
+        ["xpath=//li[6]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "c65ca554-d311-4ab7-ba62-7ec48fdc583d",
+      "comment": "",
+      "command": "click",
+      "target": "css=.widget img",
+      "targets": [
+        ["css=.widget img", "css:finder"],
+        ["xpath=//div[2]/a/img", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d75c1b31-db25-418d-8071-316a103fb060",
+      "comment": "",
+      "command": "click",
+      "target": "css=.entry:nth-child(1) span",
+      "targets": [
+        ["css=.entry:nth-child(1) span", "css:finder"],
+        ["xpath=//div/figure/figcaption/a/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8ff7f862-5846-476d-8b80-d3d9359e30ba",
+      "comment": "",
+      "command": "click",
+      "target": "css=.one-third:nth-child(2) > figure span",
+      "targets": [
+        ["css=.one-third:nth-child(2) > figure span", "css:finder"],
+        ["xpath=//div[2]/figure/figcaption/a/span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "61c6e207-08ca-4770-b7e3-628f34886cc0",
+      "comment": "",
+      "command": "click",
+      "target": "css=.quicklinks > .button:nth-child(1)",
+      "targets": [
+        ["css=.quicklinks > .button:nth-child(1)", "css:finder"],
+        ["xpath=//a[contains(text(),'More recipes')]", "xpath:link"],
+        ["xpath=(//a[contains(@href, 'Recipes')])[3]", "xpath:href"],
+        ["xpath=//div[2]/div/div[3]/a", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d355f071-734f-4c53-bff1-301b0407f686",
+      "comment": "",
+      "command": "click",
+      "target": "css=.entries:nth-child(2)",
+      "targets": [
+        ["css=.entries:nth-child(2)", "css:finder"],
+        ["xpath=//section[2]/div[2]/div", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b6e996ab-2cbc-4608-acf7-93df3ee2703a",
+      "comment": "",
+      "command": "click",
+      "target": "css=.scroll-to-top",
+      "targets": [
+        ["css=.scroll-to-top", "css:finder"],
+        ["xpath=//a[contains(text(),'Back to top')]", "xpath:link"],
+        ["xpath=//a[contains(@href, 'javascript:void(0)')]", "xpath:href"],
+        ["xpath=//a[2]", "xpath:position"]
+      ],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "dcb6da5a-f3b5-4412-8012-46701dd1c679",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["45dd29e0-3baa-4fcd-a654-270020b21a7f"]
+  }],
+  "urls": ["https://mealsformakers.xyz/"],
+  "plugins": []
+}
