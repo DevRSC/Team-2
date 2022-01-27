@@ -40,7 +40,7 @@
 					<li><a href="Landing" title="Home"><span>Home</span></a></li>
 					<li><a href="Recipes" title="Recipes"><span>Recipes</span></a>
 					</li>
-					<li><a href="Messaging" title="Messaging"><span>Messaging</span></a>
+					<li><a href="Messaging" title="Messaging" class="modal-toggle"><span>Messaging</span></a>
 					
 					<?php if (isset($_SESSION['user'])): ?>
 						<li><a href="Logout" title="Messaging"><span>Welcome, <?php echo $_SESSION['userfirstname']; ?>!<br>Click here to Logout.</span></a>
@@ -86,10 +86,14 @@
 					<!--profile left part-->
 					<div class="my_account one-fourth">
 						<figure>
-							<img src="images/avatar.jpg" alt="" />
+							<img id="mprofpic" src="<?php echo $userProfile[0]['profilePic'] == "weh" || $userProfile[0]['profilePic'] == "null" || strlen($userProfile[0]['profilePic']) <= 0 ? "images/avatar.jpg" : "/static/images/" . $userProfile[0]['profilePic'] ?>" alt="" />
 						</figure>
 						<div class="container">
 							<h2><?php echo $userProfile[0]['firstname'] . " " . $userProfile[0]['lastname'] ?></h2> 
+							<div id="editprofileimagediv" style="display: none">
+							Upload your profile picture:
+							<input type="file" id="editprofileimage"></input>
+							</div>
 						</div>
 					</div>
 					<!--//profile left part-->
@@ -107,9 +111,9 @@
 							<div class="row">
 								<dl class="basic full-width">
 									<dt>Name</dt>
-									<dd><?php echo $userProfile[0]['firstname'] . " " . $userProfile[0]['lastname'] ?></dd>
+									<dd id="accname" data-firstname="<?php echo $userProfile[0]['firstname']; ?>" data-lastname="<?php echo $userProfile[0]['lastname']; ?>"><?php echo $userProfile[0]['firstname'] . " " . $userProfile[0]['lastname'] ?></dd>
 									<dt>Birthdate</dt>
-									<dd><?php echo $userProfile[0]['birthdate']?></dd>
+									<dd id="accdate"><?php echo $userProfile[0]['birthdate']?></dd>
 									<dt>Age</dt>
 									<?php 
 										$tz  = new DateTimeZone('Asia/Manila');
@@ -168,7 +172,9 @@
 						</div>
 						<!--//my recipes-->
 						
-						
+						<button id="editprofile" style="float:left">Edit my account details</button>
+						<div id="editprofilehint" style="display: none;">&nbsp;&nbsp;&nbsp;Edit your account details by changing the text itself.</div>
+						<button id="editprofilesave" style="float:right;display:none">Save profile</button>
 						<!--my favorites-->
 						<div class="tab-content" id="favorites">
 							<div class="entries row">
@@ -347,7 +353,7 @@
 							<li><a href="Recipes" title="Recipes">Recipes</a></li>
 							<li><a href="Messaging" title="Messaging" target="_blank">Messaging</a></li>  
 							<li><a href="Searchrecipes" title="Search for recipes">Search for recipes</a></li>
-							<li><a href="Login" title="Login">Login</a></li>	<li><a href="Register" title="Register">Register</a></li>													
+											
 						</ul>
 					</nav>
 				</div>
@@ -356,7 +362,112 @@
 	</footer>
 	<!--//footer-->
 	
-	<script src="js/jquery-3.1.0.min.js"></script>
+		<link rel="stylesheet" href="css/modalstyle.css" />
+	<div class="modal">
+    <div class="modal-overlay modal-toggle"></div>
+    <div class="modal-wrapper modal-transition">
+      <div class="modal-header">
+        <button class="modal-close modal-toggle"><i class="fa fa-times fa-lg"></i></button>
+        <h2 class="modal-heading">Messaging</h2>
+      </div>
+      
+      <div class="modal-body">
+        <div class="modal-content">
+          <iframe src="Messaging" id="msgiframe" title="Messaging" style="width: 100%;height: 600px;"></iframe>
+          <!--<button class="modal-toggle">Update</button>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/jquery-3.1.0.min.js"></script>
+  <script>
+  $('.modal-toggle').on('click', function(e) {
+	  e.preventDefault();
+	  $('.modal').toggleClass('is-visible');
+	  document.getElementById("msgiframe").contentDocument.location.reload(true);
+	});
+	var editMode = false;
+	var oldFirstName = "";
+	var oldLastName = "";
+	var oldName = "";
+	var oldDate = "";
+	$(document).ready(function(){
+			$("#editprofile").click(function(){
+				if (editMode) {
+					editMode = false;
+					$("#editprofilesave").css("display", "none");
+					$("#editprofileimagediv").css("display", "none");
+					$("#editprofilehint").css("display", "none");
+					$("#editprofile").html("Edit my account details");
+					$("#accname").html(oldName);
+					$("#accdate").html(oldDate);
+				} else {
+					editMode = true;
+					oldName = $("#accname").html();
+					oldFirstName = $("#accname").data("firstname");
+					oldLastName = $("#accname").data("lastname");
+					oldDate = $("#accdate").html();
+					$("#accname").focus();
+					$("#accname").html('<input type="text" style="display: inline-block;max-width: 200px;" id="editprofilefirstname" placeholder="First name..." value="' + oldFirstName + '"/> <input type="text" style="display: inline-block;max-width: 200px;" id="editprofilelastname" placeholder="Last name..." value="' + oldLastName + '"/>');
+					$("#accdate").html('<input type="date" id="editprofileaccdate" />');
+					$("#editprofilesave").css("display", "block");
+					$("#editprofileimagediv").css("display", "block");
+					$("#editprofilehint").css("display", "block");
+					$("#editprofile").html("Cancel editing");
+				}
+				
+				
+			});
+			
+			$("#editprofilesave").click(function(){
+				var acclastnameactual = $("#editprofilelastname").val();
+				var accfirstnameactual = $("#editprofilefirstname").val();
+				var accdateactual = $("#editprofileaccdate").val();
+				var dataa = new FormData();
+				if ((accfirstnameactual.length > 0 && accfirstnameactual.length <= 50) && (acclastnameactual.length > 0 && acclastnameactual.length <= 50)) {
+					dataa.append('filee', $("#editprofileimage")[0].files[0]);
+					dataa.append('accfirstname', accfirstnameactual);
+					dataa.append('acclastname', acclastnameactual);
+					dataa.append('accdate', accdateactual);
+					$.ajax({
+						type: "POST",
+						url: "<?php echo site_url('Myaccount'); ?>",
+						data: dataa,
+						enctype: 'multipart/form-data',
+						processData: false,
+						contentType: false,
+						beforeSend: function(){
+							
+						},
+						success: function(data){
+							editMode = false;
+							$("#editprofilesave").css("display", "none");
+							$("#editprofileimagediv").css("display", "none");
+							$("#editprofilehint").css("display", "none");
+							$("#editprofile").html("Edit my account details");
+							$("#accname").html(oldName);
+							$("#accdate").html(oldDate);
+							if (data.startsWith("ATTENTION: ")) {
+								alert(data);
+							} else {
+								//success
+								alert("Profile successfully edited!");
+								$("#accname").html(accfirstnameactual + " " + acclastnameactual);
+								$("#mprofpic").attr("src","/static/images/" + data);
+								$("#accdate").html(accdateactual);
+							}
+							
+							
+						}
+					});
+				} else {
+					alert('Enter your proper name and birthdate!');
+				}
+			});
+			
+		});
+	</script>
+	
 	<script src="js/jquery.uniform.min.js"></script>
 	<script src="js/jquery.slicknav.min.js"></script>
 	<script src="js/scripts.js"></script>

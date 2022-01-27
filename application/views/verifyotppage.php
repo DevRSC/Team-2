@@ -120,8 +120,7 @@
 							<li><a href="Landing" title="Home">Home</a></li>
 							<li><a href="Recipes" title="Recipes">Recipes</a></li>
 							<li><a href="Messaging" title="Messaging" target="_blank">Messaging</a></li>  
-							<li><a href="Searchrecipes" title="Search for recipes">Search for recipes</a></li>
-							<li><a href="Login" title="Login">Login</a></li>	<li><a href="Register" title="Register">Register</a></li>													
+							<li><a href="Searchrecipes" title="Search for recipes">Search for recipes</a></li>											
 						</ul>
 					</nav>
 				</div>

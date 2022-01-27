@@ -21,7 +21,7 @@ class Uploadrecipe extends CI_Controller {
 	
 	public function do_upload() {
 			$config['upload_path']          = './static/images/';
-			$config['allowed_types']        = 'gif|jpg|png';
+			$config['allowed_types']        = 'gif|jpg|png|jpeg';
 			$config['max_size']             = 10000;
 			$config['max_width']            = 1920;
 			$config['max_height']           = 1080;
@@ -116,14 +116,15 @@ class Uploadrecipe extends CI_Controller {
 					if (strlen($recipeinst) <= 10 || strlen($recipeinst) >= 3000 || ctype_space($recipeinst)) {
 						$errorind = $errorind . " \\n Between 10 to 3000 characters are allowed in a recipe's instructions.";
 					}
+					$foundInvalidQuantity = false;
 					foreach($this->input->post() as $key => $val) {
-						if ($this->strcont($key, "_ing")) {
+						if ($this->strcont($key, "_ing") && !$foundInvalidQuantity) {
 							$ingred = $this->input->get_post($key, TRUE);
 							$randnum = "_quan" . explode("_ing",$key)[1];
 							$ingquantity = $this->input->get_post($randnum, TRUE);
-							if (strlen($ingquantity) <= 0 || strlen($ingquantity) >= 10 || ctype_space($ingquantity)) {
-								$errorind = $errorind . " \n Some of your ingredients has invalid quantity. Please try again.";
-								break;
+							if (strlen($ingquantity) <= 0 || strlen($ingquantity) >= 10 || ctype_space($ingquantity) || strlen($ingred) <= 1) {
+								$errorind = $errorind . " \n Some of your ingredients is invalid. Please try again.";
+								$foundInvalidQuantity = true;
 							}			
 						}
 					}
@@ -164,11 +165,12 @@ class Uploadrecipe extends CI_Controller {
 						} else {
 							//brah
 							$this->session->set_userdata('postrecipelog',$res1['msg']);
-							redirect('Postrecipe');
+							//echo "HAHAHA NAG ERROR";
+							//redirect('Postrecipe');
 						}
 					} else {
 						$this->session->set_userdata('postrecipelog',$errorind);
-						redirect('Postrecipe');
+						//redirect('Postrecipe');
 					}
 				}
 			

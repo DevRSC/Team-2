@@ -40,7 +40,7 @@
 					<li><a href="landing" title="Home"><span>Home</span></a></li>
 					<li><a href="Recipes" title="Recipes"><span>Recipes</span></a>
 					</li>
-					<li><a href="Messaging" title="Messaging"><span>Messaging</span></a>
+					<li><a href="Messaging" title="Messaging" class="modal-toggle"><span>Messaging</span></a>
 					
 					<?php if (isset($_SESSION['user'])): ?>
 						<li><a href="Logout" title="Messaging"><span>Welcome, <?php echo $_SESSION['userfirstname']; ?>!<br>Click here to Logout.</span></a>
@@ -197,7 +197,7 @@
 						<div class="comment-respond" id="respond">
 							<h2>Leave a comment</h2>
 							<div class="container">
-									<p><b>Enter your comment (5 to 500 characters only):</b></p>
+									<p><b id="displaycommentlabel">Enter your comment (500 characters left):</b></p>
 									<div class="f-row">
 										<textarea id="maincommentfield"></textarea>
 									</div>
@@ -268,7 +268,7 @@
 							<li><a href="Recipes" title="Recipes">Recipes</a></li>
 							<li><a href="Messaging" title="Messaging" target="_blank">Messaging</a></li>  
 							<li><a href="Searchrecipes" title="Search for recipes">Search for recipes</a></li>
-							<li><a href="Login" title="Login">Login</a></li>	<li><a href="Register" title="Register">Register</a></li>													
+										
 						</ul>
 					</nav>
 				</div>
@@ -277,7 +277,32 @@
 	</footer>
 	<!--//footer-->
 	
-	<script src="js/jquery-3.1.0.min.js"></script>
+		<link rel="stylesheet" href="css/modalstyle.css" />
+	<div class="modal">
+    <div class="modal-overlay modal-toggle"></div>
+    <div class="modal-wrapper modal-transition">
+      <div class="modal-header">
+        <button class="modal-close modal-toggle"><i class="fa fa-times fa-lg"></i></button>
+        <h2 class="modal-heading">Messaging</h2>
+      </div>
+      
+      <div class="modal-body">
+        <div class="modal-content">
+          <iframe src="Messaging" id="msgiframe" title="Messaging" style="width: 100%;height: 600px;"></iframe>
+          <!--<button class="modal-toggle">Update</button>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/jquery-3.1.0.min.js"></script>
+  <script>
+  $('.modal-toggle').on('click', function(e) {
+	  e.preventDefault();
+	  $('.modal').toggleClass('is-visible');
+	  document.getElementById("msgiframe").contentDocument.location.reload(true);
+	});
+	</script>
+	
 	<script src="js/jquery.uniform.min.js"></script>
 	<script src="js/jquery.slicknav.min.js"></script>
 	<script src="js/scripts.js"></script>
@@ -321,6 +346,13 @@
 					});
 		}
 		$(document).ready(function(){
+			$('body').on('keyup paste', 'textarea', function () {
+				var maxchars = 500;
+				$(this).val($(this).val().substring(0, maxchars));
+				var tlength = $(this).val().length;
+				remain = maxchars - parseInt(tlength);
+				$('#displaycommentlabel').html("Enter your comment (" + remain + " characters left):");
+			});
 			refreshCommentList();
 			$("#submitcomment").click(function(){
 				var comm = $("#maincommentfield").val();

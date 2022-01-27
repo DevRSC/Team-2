@@ -89,7 +89,7 @@
 					<!--profile left part-->
 					<div class="my_account one-fourth">
 						<figure>
-							<img src="images/avatar.jpg" alt="" />
+							<img src="<?php echo $userProfile[0]['profilePic'] == "weh" || $userProfile[0]['profilePic'] == "null" || strlen($userProfile[0]['profilePic']) <= 0 ? "images/avatar.jpg" : "/static/images/" . $userProfile[0]['profilePic'] ?>" alt="" />
 						</figure>
 						<div class="container">
 							<h2><?php echo $userProfile[0]['firstname'] . " " . $userProfile[0]['lastname'] ?></h2>
@@ -317,7 +317,7 @@
 					<div class="comment-respond" id="respond"style="margin-top: -50px;">
 							<h2>Message this user:</h2>
 							<div class="container">
-									<p><b>Enter your message... (500 characters max):</b></p>
+									<p><b id="displaycommentlabel">Enter your message (500 characters left):</b></p>
 									<div class="f-row">
 										<textarea id="maincommentfield"></textarea>
 									</div>
@@ -373,7 +373,7 @@
 							<li><a href="Recipes" title="Recipes">Recipes</a></li>
 							<li><a href="Messaging" title="Messaging" target="_blank">Messaging</a></li>  
 							<li><a href="Searchrecipes" title="Search for recipes">Search for recipes</a></li>
-							<li><a href="Login" title="Login">Login</a></li>	<li><a href="Register" title="Register">Register</a></li>													
+																			
 						</ul>
 					</nav>
 				</div>
@@ -398,20 +398,30 @@
       </div>
     </div>
   </div>
-	<script src="js/jquery-3.1.0.min.js"></script>
+  <script src="js/jquery-3.1.0.min.js"></script>
+  <script>
+  $('.modal-toggle').on('click', function(e) {
+	  e.preventDefault();
+	  $('.modal').toggleClass('is-visible');
+	  document.getElementById("msgiframe").contentDocument.location.reload(true);
+	});
+	</script>
+	
 	<script src="js/jquery.uniform.min.js"></script>
 	<script src="js/jquery.slicknav.min.js"></script>
 	<script src="js/scripts.js"></script>
 	
 	<script>
-	// Quick & dirty toggle to demonstrate modal toggle behavior
-	$('.modal-toggle').on('click', function(e) {
-	  e.preventDefault();
-	  $('.modal').toggleClass('is-visible');
-	  document.getElementById("msgiframe").contentDocument.location.reload(true);
-	});
+	
 	var mRecIndex = "<?php echo $_GET['a']; ?>";
 	$(document).ready(function(){
+		$('body').on('keyup paste', 'textarea', function () {
+				var maxchars = 500;
+				$(this).val($(this).val().substring(0, maxchars));
+				var tlength = $(this).val().length;
+				remain = maxchars - parseInt(tlength);
+				$('#displaycommentlabel').html("Enter your message (" + remain + " characters left):");
+			});
 			$("#submitcomment").click(function(){
 				var comm = $("#maincommentfield").val();
 				if (comm.length > 0 && comm.length <= 500) {

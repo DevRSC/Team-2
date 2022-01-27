@@ -66,14 +66,14 @@
 			<div class="row">
 			<!--content-->
 				<section class="content center full-width">
-					<form action="Login" method="POST">
+					<form id="mform" action="Login" method="POST">
 						<div class="modal container">
 							<h3>Login</h3>
 							<div class="f-row">
-								<input type="text" name="username" placeholder="Your username" />
+								<input id="musername" type="text" name="username" placeholder="Your username" />
 							</div>
 							<div class="f-row">
-								<input type="password" name="password" placeholder="Your password" />
+								<input id="mpass" type="password" name="password" placeholder="Your password" />
 							</div>
 							
 							<!-- <div class="f-row">

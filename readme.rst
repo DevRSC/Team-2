@@ -1,8 +1,30 @@
 ###################
-CHANGELOG - Gil Alvarez Developer Branch (concatenated with Ramil Cobilla Branch)
+CHANGELOG - Gil Alvarez Developer Branch (concatenated with Ramil Cobilla developer Branch)
 ###################
 
 **Visit the live site! https://mealsformakers.xyz/**
+**Download the Android App! https://mealsformakers.xyz/mealsformakers.apk**
+
+*******************
+v1.1 code change, codename: "PHP > JS" (week 10, 11, 12)
+*******************
+
+* Fixed major recipe upload and recipe edit flaws
+* Added recipe removal functionality
+* Updated database schema due to function changes
+* Fixed messaging page (with reply functionality)
+* fixed some bugged CRUD functions
+* fixed user input validation for all possible inputs (user registration, recipe creation, etc.)
+* added user email OTP functionality in registration
+* added password reset capability
+
+* BUGS:
+	* Messaging functions are not complete
+	* No edit function and deactivation for account profile yet
+	* Some layout issues
+	* Weird JS error when sending a message on messages popup in Account view
+
+
 
 *******************
 v1.0.2 code change, codename: "Hapi new year ebriwan" (week 5, 6, 7)

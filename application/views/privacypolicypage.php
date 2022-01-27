@@ -41,7 +41,6 @@
 					<li><a href="Landing" title="Home"><span>Home</span></a></li>
 					<li><a href="Recipes" title="Recipes"><span>Recipes</span></a>
 					</li>
-					<li><a href="Messaging" title="Messaging"><span>Messaging</span></a>
 					
 					<li><a href="Login" title="Messaging"><span>Login</span></a>
 				</ul>
@@ -139,7 +138,7 @@
 							<li><a href="Recipes" title="Recipes">Recipes</a></li>
 							<li><a href="Messaging" title="Messaging" target="_blank">Messaging</a></li>  
 							<li><a href="Searchrecipes" title="Search for recipes">Search for recipes</a></li>
-							<li><a href="Login" title="Login">Login</a></li>	<li><a href="Register" title="Register">Register</a></li>													
+												
 						</ul>
 					</nav>
 				</div>
